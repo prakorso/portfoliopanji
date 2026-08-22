@@ -1,50 +1,52 @@
 hero:
-  eyebrow: "Marketing Professional"
-  headingLines:
-    - text: "Marketing"
-      accent: false
-    - text: "Digital"
-      accent: false
-    - text: "Performance"
-      accent: true
-    - text: "Growth"
-      accent: true
-  description: "Marketing professional building brands, driving customer acquisition, and turning digital strategy into measurable business impact."
-  primaryCtaLabel: "View selected work"
-  primaryCtaHref: "#projects"
-  secondaryCtaLabel: "Get in touch"
+  badge: Brand · Digital · Performance · Growth
+  primaryCtaLabel: View selected work
   secondaryCtaHref: "#contact"
-  image: "/assets/portrait.svg"
-  imageAlt: "Panji Prakorso, marketing professional"
-  badge: "Brand · Digital · Performance · Growth"
+  eyebrow: Marketing Professional
+  imageAlt: Panji Prakorso, marketing professional
+  secondaryCtaLabel: Get in touch
+  primaryCtaHref: "#projects"
+  image: /uploads/profile/screenshot-2026-08-07-at-13.27.52.png
+  description: Marketing professional building brands, driving customer
+    acquisition, and turning digital strategy into measurable business impact.
+  headingLines:
+    - text: Marketing
+      accent: false
+    - text: Digital
+      accent: false
+    - text: Performance
+      accent: true
+    - text: Growth
+      accent: true
 stats:
-  - value: "8+"
-    label: "Years Professional Experience"
+  - value: 8+
+    label: Years Professional Experience
   - value: "3"
-    label: "Featured Projects"
+    label: Featured Projects
   - value: "4"
-    label: "Marketing Disciplines"
+    label: Marketing Disciplines
 projectsSection:
-  label: "Featured Projects"
-  title: "Selected Work"
-  lead: "Three businesses. Three different challenges. One marketing mindset."
+  label: Featured Projects
+  title: Selected Work
+  lead: Three businesses. Three different challenges. One marketing mindset.
 featuredProjects:
-  - "99-group"
-  - "perkasa-motors"
-  - "axioo-pongo"
+  - 99-group
+  - perkasa-motors
+  - axioo-pongo
 impact:
-  label: "Selected Historical Impact"
-  title: "Impact That Matters"
+  label: Selected Historical Impact
+  title: Impact That Matters
   items:
-    - value: "4X"
-      label: "YoY Sales Growth"
-    - value: "+727%"
-      label: "Total Users"
-    - value: "-77%"
-      label: "CPC"
-    - value: "+276%"
-      label: "CTR"
-    - value: "13.24X"
-      label: "Website Engaged Sessions"
-  attribution: "Axioo Indonesia"
-  note: "Selected historical impact achieved at Axioo Indonesia. These describe past performance in that role and period, not current 2026 results."
+    - value: 4X
+      label: YoY Sales Growth
+    - value: +727%
+      label: Total Users
+    - value: -77%
+      label: CPC
+    - value: +276%
+      label: CTR
+    - value: 13.24X
+      label: Website Engaged Sessions
+  attribution: Axioo Indonesia
+  note: Selected historical impact achieved at Axioo Indonesia. These describe
+    past performance in that role and period, not current 2026 results.
