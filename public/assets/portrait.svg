@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" width="720" height="900" role="img" aria-label="Editorial portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1A2E"/>
+      <stop offset="1" stop-color="#040C16"/>
+    </linearGradient>
+    <linearGradient id="figure" x1="0.1" y1="0.05" x2="0.95" y2="1">
+      <stop offset="0" stop-color="#3E5F92"/>
+      <stop offset="0.45" stop-color="#24406C"/>
+      <stop offset="1" stop-color="#122744"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="0.2" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B3358"/>
+      <stop offset="1" stop-color="#0D1E36"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0.1" x2="1" y2="0.9">
+      <stop offset="0" stop-color="#93C5FD"/>
+      <stop offset="0.5" stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.6" cy="0.28" r="0.6">
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="720" height="900"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="720" height="900" fill="url(#bg)"/>
+    <rect width="720" height="900" fill="url(#halo)"/>
+
+    <!-- geometric backdrop -->
+    <path d="M470 -60 L780 250 L640 390 L330 80 Z" fill="#2563EB" opacity="0.32"/>
+    <path d="M580 130 L800 350 L720 430 L500 210 Z" fill="#3B82F6" opacity="0.2"/>
+    <g opacity="0.28">
+      <path d="M52 620 h250" stroke="#60A5FA" stroke-width="1"/>
+      <path d="M52 668 h170" stroke="#60A5FA" stroke-width="1"/>
+      <path d="M52 716 h96" stroke="#60A5FA" stroke-width="1"/>
+    </g>
+
+    <!-- editorial figure -->
+    <g>
+      <!-- shoulders / coat -->
+      <path d="M296 356 218 392c-70 31-113 87-123 163L64 900h592l-31-345c-10-76-53-132-123-163l-78-36-64 46-64-46Z" fill="url(#coat)"/>
+      <!-- neck -->
+      <path d="M322 322h76v70c0 12-17 24-38 24s-38-12-38-24v-70Z" fill="#1B3358"/>
+      <!-- head -->
+      <path d="M360 168c52 0 86 38 86 96 0 62-38 116-86 116s-86-54-86-116c0-58 34-96 86-96Z" fill="url(#figure)"/>
+      <!-- hair mass -->
+      <path d="M274 268c-4-64 32-108 86-108 50 0 82 30 88 78-24-20-58-30-96-26-34 4-58 22-78 56Z" fill="#16304F"/>
+      <!-- rim light down the left edge -->
+      <path d="M290 210c-14 22-18 48-14 76 6 44 26 82 54 98" fill="none" stroke="url(#rim)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+      <path d="M296 356 218 392c-70 31-113 87-123 163L70 860" fill="none" stroke="url(#rim)" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+      <!-- collar -->
+      <path d="M296 356l64 46 64-46 34 16-98 82-98-82 34-16Z" fill="#0B1A2E" opacity="0.7"/>
+    </g>
+
+    <!-- subtle vignette -->
+    <rect width="720" height="900" fill="url(#bg)" opacity="0.08"/>
+  </g>
+</svg>
