@@ -1,19 +1,23 @@
 import { Link, useLocation } from 'react-router-dom'
-import { navLinks, site } from '../data/site.js'
+import { navLinks } from '../data/site.js'
+import { useSection } from '../content/ContentProvider.jsx'
 import { ArrowUp, LinkedIn, Instagram } from './Icons.jsx'
 
 export default function Footer() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+  const general = useSection('general')
+  const contact = useSection('contact')
+  const year = new Date().getFullYear()
 
   return (
     <footer className="footer">
       <div className="shell footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__name">
-            Panji Prakorso
+            {general.name}
           </Link>
-          <p className="footer__tagline">{site.tagline}</p>
+          <p className="footer__tagline">{general.tagline}</p>
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
@@ -31,27 +35,33 @@ export default function Footer() {
         </nav>
 
         <div className="footer__social">
-          <a
-            href={site.linkedin.url}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="LinkedIn"
-          >
-            <LinkedIn />
-          </a>
-          <a
-            href={site.instagram.url}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Instagram"
-          >
-            <Instagram />
-          </a>
+          {contact.linkedinUrl && (
+            <a
+              href={contact.linkedinUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="LinkedIn"
+            >
+              <LinkedIn />
+            </a>
+          )}
+          {contact.instagramUrl && (
+            <a
+              href={contact.instagramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Instagram"
+            >
+              <Instagram />
+            </a>
+          )}
         </div>
       </div>
 
       <div className="shell footer__bottom">
-        <p>© 2026 Panji Prakorso. All rights reserved.</p>
+        <p>
+          © {year} {general.name}. All rights reserved.
+        </p>
         <button
           type="button"
           className="footer__top"

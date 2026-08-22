@@ -3,7 +3,9 @@ import ProjectVisual from './visuals/ProjectVisual.jsx'
 import { ArrowRight } from './Icons.jsx'
 
 export default function ProjectCard({ project, isActive = false }) {
-  const hasMetrics = project.cardMetrics.length > 0
+  const cardMetrics = project.cardMetrics ?? []
+  const tags = project.tags ?? []
+  const hasMetrics = cardMetrics.length > 0
 
   return (
     <article className={`project-card ${isActive ? 'is-active' : ''}`}>
@@ -19,7 +21,7 @@ export default function ProjectCard({ project, isActive = false }) {
 
         {hasMetrics ? (
           <ul className="project-card__metrics">
-            {project.cardMetrics.map((m) => (
+            {cardMetrics.map((m) => (
               <li key={m.label}>
                 <span className="project-card__metric-value">{m.value}</span>
                 <span className="project-card__metric-label">{m.label}</span>
@@ -28,7 +30,7 @@ export default function ProjectCard({ project, isActive = false }) {
           </ul>
         ) : (
           <ul className="project-card__tags">
-            {project.tags.map((tag) => (
+            {tags.map((tag) => (
               <li key={tag}>{tag}</li>
             ))}
           </ul>

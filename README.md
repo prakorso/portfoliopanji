@@ -3,7 +3,12 @@
 A single-page personal portfolio positioning **Panji Prakorso** as a marketing professional working
 across **Brand, Digital, Performance and Growth**, plus three dedicated case-study pages.
 
-Built with **React + Vite + React Router**, deployable to **Netlify** as-is.
+Built with **React + Vite + React Router**, deployable to **Netlify** as-is, with content edited
+through a small built-in CMS at `/admin` backed by **Supabase**.
+
+> **Editing the site:** open `/admin` and sign in. See [docs/CMS-SETUP.md](docs/CMS-SETUP.md) for
+> the one-time Supabase setup. Until that is done the site renders its built-in default content,
+> so it always works.
 
 ---
 
@@ -11,9 +16,12 @@ Built with **React + Vite + React Router**, deployable to **Netlify** as-is.
 
 ```bash
 npm install
-npm run dev      # local dev server
-npm run build    # production build -> dist/
-npm run preview  # preview the production build
+cp .env.example .env     # optional: Supabase credentials for /admin
+npm run dev              # site on / , admin on /admin
+npm run build            # production build -> dist/
+npm run preview          # preview the production build
+npm run supabase:verify  # check the Supabase project is wired up correctly
+npm run seed:generate    # rebuild supabase/seed.sql from src/content/defaults.js
 ```
 
 ## Deploying to Netlify
@@ -26,6 +34,9 @@ npm run preview  # preview the production build
 | Publish directory | `dist` |
 | Node version | 20 |
 
+Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under **Site configuration → Environment
+variables** to enable `/admin`. Vite inlines them at build time, so redeploy after changing them.
+
 An SPA redirect (`/* -> /index.html 200`) is set in both `netlify.toml` and `public/_redirects`, so
 deep links such as `/projects/99-group` resolve correctly.
 
@@ -35,13 +46,25 @@ deep links such as `/projects/99-group` resolve correctly.
 
 ```
 src/
-  data/            # all site content — edit here, not in components
+  data/            # DEFAULT content — the fallback and the seed source, not the live copy.
     site.js        # name, contact, nav, hero stats
     projects.js    # the three projects + full case-study content
     capabilities.js
     milestones.js
     framework.js   # the "How I think" four-step model
     tools.js
+  content/
+    defaults.js         # assembles src/data into the section shape stored in the DB
+    ContentProvider.jsx # loads content from Supabase, falls back to defaults
+  lib/
+    supabase.js         # config + anonymous REST reads (no SDK — keeps the public bundle small)
+    supabaseClient.js   # full SDK client, imported only by the admin area
+  admin/           # the /admin CMS (lazily loaded, never in the public bundle)
+    AdminApp.jsx AuthProvider.jsx RequireAuth.jsx AdminLayout.jsx Login.jsx
+    useEditor.js useMedia.js admin.css
+    sections/SectionFields.jsx    # the field groups for every content section
+    components/                   # Fields, Repeater, ImageField, MediaPicker, SaveBar, EditorPage
+    pages/                        # Homepage, About, Experience, Projects, Skills, Contact, Media
   components/      # reusable UI
     Navbar, Hero, AboutSection, CapabilityCards, CareerTimeline,
     ImpactMetrics, ProjectCarousel, ProjectCard, MarketingFramework,
@@ -59,8 +82,11 @@ src/
 
 ### Adding or editing a project
 
-Everything about a project lives in `src/data/projects.js`. Add an object to the `projects` array
-and both the homepage carousel and its case-study page at `/projects/<slug>` appear automatically.
+Day to day, do this in **/admin → Projects** — add, edit, reorder, feature or delete, no code.
+
+`src/data/projects.js` holds the *default* project content: what a fresh database is seeded with
+and what renders if Supabase is unavailable. Its shape is the same as the `data` column of the
+`projects` table:
 
 ```js
 {
@@ -90,9 +116,12 @@ and both the homepage carousel and its case-study page at `/projects/<slug>` app
 }
 ```
 
+After editing `src/data/*`, run `npm run seed:generate` to refresh `supabase/seed.sql`.
+
 **Content rule enforced throughout:** metrics are only shown where they are real. Perkasa Motors
 uses `impact.qualitative` rather than invented numbers, and the Axioo figures carry an explicit
-attribution and a note stating they are historical, not current results.
+attribution and a note stating they are historical, not current results. The admin keeps both
+options — metrics *and* qualitative points — so this stays possible when you edit.
 
 ---
 
@@ -100,8 +129,8 @@ attribution and a note stating they are historical, not current results.
 
 | Asset | Path | Notes |
 | --- | --- | --- |
-| Portrait | `public/assets/portrait.svg` | Stylised placeholder. Drop in a real photo and update `site.portrait` in `src/data/site.js` (e.g. `/assets/portrait.jpg`). A 4:5 portrait crop works best. |
-| CV | `public/assets/panji-prakorso-cv.pdf` | Referenced by the **Download CV** button via `site.cvUrl`. Add the file to enable the download. |
+| Portrait | `public/assets/portrait.svg` | Stylised placeholder. Replace it in **/admin → Homepage → Hero → Hero image** (upload a 4:5 crop), no code needed. |
+| CV | — | Upload the PDF in **/admin → Media**, then paste its path into **About → CV download link**. |
 | Project artwork | `src/components/visuals/ProjectVisual.jsx` | Abstract SVGs. Swap any variant for an `<img src="/assets/…" />` to use real screenshots. |
 | Favicon | `public/assets/favicon.svg` | |
 

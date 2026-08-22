@@ -2,13 +2,14 @@ import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import ProjectVisual from '../components/visuals/ProjectVisual.jsx'
-import { getProject, getRelatedProjects } from '../data/projects.js'
+import { useProject, useProjects } from '../content/ContentProvider.jsx'
 import { ArrowLeft, ArrowRight } from '../components/Icons.jsx'
 
 /** Reusable case-study template — every project renders through this one component. */
 export default function CaseStudy() {
   const { slug } = useParams()
-  const project = getProject(slug)
+  const project = useProject(slug)
+  const allProjects = useProjects()
 
   useEffect(() => {
     if (project) document.title = `${project.title} — Case Study | Panji Prakorso`
@@ -16,9 +17,10 @@ export default function CaseStudy() {
 
   if (!project) return <Navigate to="/404" replace />
 
-  const related = getRelatedProjects(slug)
-  const { impact } = project
-  const hasNumbers = impact.items.length > 0
+  const related = allProjects.filter((p) => p.slug !== slug)
+  const impact = project.impact ?? {}
+  const impactItems = impact.items ?? []
+  const hasNumbers = impactItems.length > 0
 
   return (
     <article className="case">
@@ -41,7 +43,7 @@ export default function CaseStudy() {
               <p className="case__category">{project.category}</p>
               <p className="case__lead">{project.heroDescription}</p>
               <ul className="case__tags">
-                {project.tags.map((tag) => (
+                {(project.tags ?? []).map((tag) => (
                   <li key={tag}>{tag}</li>
                 ))}
               </ul>
@@ -56,7 +58,7 @@ export default function CaseStudy() {
 
       {/* ---------- Chapters ---------- */}
       <div className="shell case__body">
-        {project.chapters.map((chapter, i) => (
+        {(project.chapters ?? []).map((chapter, i) => (
           <Reveal as="section" key={chapter.id} className="chapter" id={chapter.id}>
             <div className="chapter__aside">
               <span className="chapter__index">{String(i + 1).padStart(2, '0')}</span>
@@ -65,7 +67,7 @@ export default function CaseStudy() {
 
             <div className="chapter__content">
               <h2 className="chapter__title">{chapter.title}</h2>
-              {chapter.body.map((paragraph) => (
+              {(chapter.body ?? []).map((paragraph) => (
                 <p key={paragraph.slice(0, 32)} className="chapter__text">
                   {paragraph}
                 </p>
@@ -110,7 +112,7 @@ export default function CaseStudy() {
 
           {hasNumbers && (
             <Reveal className="case__metrics" delay={70}>
-              {impact.items.map((m) => (
+              {impactItems.map((m) => (
                 <div className="metric metric--lg" key={m.label}>
                   <span className="metric__value">{m.value}</span>
                   <span className="metric__label">{m.label}</span>

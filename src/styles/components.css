@@ -2015,3 +2015,29 @@
 .notfound__inner .btn {
   margin-top: 2rem;
 }
+
+/* =========================================================
+   CONTENT LOADING (shown only while CMS content is fetched)
+   ========================================================= */
+
+.site-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  animation: site-loading-pulse 1.4s var(--ease) infinite;
+}
+
+@keyframes site-loading-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* Optional one-line discipline summary — renders only when filled in via /admin */
+.capability__desc {
+  position: relative;
+  margin-top: 0.7rem;
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}

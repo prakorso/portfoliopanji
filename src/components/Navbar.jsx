@@ -1,11 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { navLinks, site } from '../data/site.js'
+import { navLinks } from '../data/site.js'
+import { useSection } from '../content/ContentProvider.jsx'
 import { Menu, Close, Monogram } from './Icons.jsx'
 
 export default function Navbar() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+  const general = useSection('general')
+  const contact = useSection('contact')
+  const [firstName, ...restName] = (general.name ?? '').split(' ')
 
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -60,7 +64,7 @@ export default function Navbar() {
           <Link to="/" className="nav__brand" onClick={closeMenu}>
             <Monogram />
             <span className="nav__brand-text">
-              Panji <strong>Prakorso</strong>
+              {firstName} <strong>{restName.join(' ')}</strong>
             </span>
           </Link>
 
@@ -125,8 +129,8 @@ export default function Navbar() {
           )}
         </nav>
         <div className="mobile-menu__foot">
-          <span className="label label--bare">{site.tagline}</span>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <span className="label label--bare">{general.tagline}</span>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
       </div>
     </>

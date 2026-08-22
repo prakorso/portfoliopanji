@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import ProjectCard from './ProjectCard.jsx'
-import { projects } from '../data/projects.js'
+import { useFeaturedProjects, useSection } from '../content/ContentProvider.jsx'
 import { ArrowLeft, ArrowRight } from './Icons.jsx'
 
 /** User-controlled carousel. Native scroll + snap on touch, arrows on desktop. No autoplay. */
 export default function ProjectCarousel() {
+  const projects = useFeaturedProjects()
+  const heading = useSection('projectsSection')
   const trackRef = useRef(null)
   const [active, setActive] = useState(0)
   const [edges, setEdges] = useState({ start: true, end: false })
@@ -16,12 +18,12 @@ export default function ProjectCarousel() {
     const card = track.querySelector('.carousel__item')
     const step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth
     const index = Math.round(track.scrollLeft / step)
-    setActive(Math.min(projects.length - 1, Math.max(0, index)))
+    setActive(Math.max(0, Math.min(projects.length - 1, index)))
     setEdges({
       start: track.scrollLeft <= 8,
       end: track.scrollLeft + track.clientWidth >= track.scrollWidth - 8
     })
-  }, [])
+  }, [projects.length])
 
   useEffect(() => {
     const track = trackRef.current
@@ -50,11 +52,9 @@ export default function ProjectCarousel() {
       <div className="shell">
         <Reveal className="eyebrow-row projects__head">
           <div>
-            <span className="label">Featured Projects</span>
-            <h2 className="section-title">Selected Work</h2>
-            <p className="section-lead">
-              Three businesses. Three different challenges. One marketing mindset.
-            </p>
+            <span className="label">{heading.label}</span>
+            <h2 className="section-title">{heading.title}</h2>
+            <p className="section-lead">{heading.lead}</p>
           </div>
 
           <div className="carousel__controls">
