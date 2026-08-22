@@ -1,5 +1,5 @@
 hero:
-  eyebrow: "CMS WRITE TEST"
+  eyebrow: "Marketing Professional"
   headingLines:
     - text: "Marketing"
       accent: false
@@ -14,7 +14,7 @@ hero:
   primaryCtaHref: "#projects"
   secondaryCtaLabel: "Get in touch"
   secondaryCtaHref: "#contact"
-  image: "/uploads/profile/cms-test-photo.png"
+  image: "/assets/portrait.svg"
   imageAlt: "Panji Prakorso, marketing professional"
   badge: "Brand · Digital · Performance · Growth"
 stats:
