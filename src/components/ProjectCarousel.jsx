@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import ProjectCard from './ProjectCard.jsx'
-import { useFeaturedProjects, useSection } from '../content/ContentProvider.jsx'
+import { featuredProjects as projects, projectsSection as heading } from '../content/index.js'
 import { ArrowLeft, ArrowRight } from './Icons.jsx'
 
 /** User-controlled carousel. Native scroll + snap on touch, arrows on desktop. No autoplay. */
 export default function ProjectCarousel() {
-  const projects = useFeaturedProjects()
-  const heading = useSection('projectsSection')
   const trackRef = useRef(null)
   const [active, setActive] = useState(0)
   const [edges, setEdges] = useState({ start: true, end: false })

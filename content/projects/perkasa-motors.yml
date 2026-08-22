@@ -1,0 +1,81 @@
+title: "Perkasa Motors"
+slug: "perkasa-motors"
+displayTitle: "PERKASA MOTORS"
+number: "02"
+category: "Business Building / Marketing / Automotive"
+categoryShort: "Business / Marketing"
+year: ""
+order: 2
+featured: true
+heroImage: ""
+logo: ""
+visual: "automotive"
+tags:
+  - "Business Building"
+  - "Brand"
+  - "Digital Ecosystem"
+  - "Marketing"
+shortDescription: "Building a modern automotive business and digital ecosystem from the ground up."
+heroDescription: "An entrepreneurial marketing project: designing the brand, the business model and the digital ecosystem of an automotive business from a blank page."
+cardMetrics: []
+chapters:
+  - label: "Business Context"
+    title: "Starting an automotive business from zero"
+    body:
+      - "Perkasa Motors is a used-car business built from the ground up — not a marketing brief handed over by a client, but a company where positioning, operations and demand generation had to be designed together."
+      - "That makes it the clearest test of marketing thinking I have: no existing brand equity, no inherited traffic, no legacy funnel. Every decision had to earn its place commercially."
+    bullets: []
+    columns: []
+  - label: "Brand"
+    title: "A trust-first identity in a low-trust category"
+    body:
+      - "Used-car buying is a high-consideration, trust-sensitive purchase. The brand was built to answer that directly: clear presentation, honest vehicle information and a consistent identity across every surface a buyer touches."
+    bullets:
+      - "Positioning built around transparency and buyer confidence"
+      - "Consistent visual identity across digital and physical touchpoints"
+      - "Vehicle presentation standards treated as brand, not admin"
+      - "Tone of voice that informs rather than pressures"
+    columns: []
+  - label: "Business Model"
+    title: "Marketing decisions tied to unit economics"
+    body:
+      - "Inventory, pricing and demand generation are one system. Marketing here is not a layer on top of the business — it sets which vehicles get sourced, how they are priced and how quickly they need to move."
+    bullets:
+      - "Inventory selection informed by observed demand signals"
+      - "Pricing and presentation aligned to buyer expectations"
+      - "Enquiry handling designed as part of the funnel, not after it"
+      - "Marketing effort weighted toward stock that needs velocity"
+    columns: []
+  - label: "Digital Ecosystem"
+    title: "Owned platform first, channels second"
+    body:
+      - "The digital ecosystem was built so the business owns its shopfront rather than renting attention entirely from marketplaces and social platforms."
+    bullets:
+      - "Website as the canonical inventory and brand destination"
+      - "Structured listing pages built for search discoverability"
+      - "Direct enquiry routes into conversation, not into a form void"
+      - "Social profiles positioned as top-of-funnel discovery"
+      - "Analytics and tracking in place from day one"
+    columns: []
+  - label: "Marketing"
+    title: "Full-funnel execution at small-business scale"
+    body:
+      - "With a founder-scale budget, the marketing model prioritises compounding assets — content, listings and search presence — supported by targeted paid activity rather than the reverse."
+    bullets:
+      - "Content and vehicle storytelling as the primary demand asset"
+      - "Search and marketplace visibility for high-intent buyers"
+      - "Social content for reach, credibility and remarketing pools"
+      - "Paid media used selectively against specific inventory goals"
+    columns: []
+impact:
+  label: "Current Progress"
+  attribution: "Perkasa Motors — ongoing"
+  note: "Perkasa Motors is an active, early-stage business. No performance metrics are published here, because none have been independently verified yet. The evidence below is qualitative and deliberately kept that way."
+  items: []
+  qualitative:
+    - "Brand identity, positioning and presentation standards defined and in use"
+    - "Owned website and inventory experience live as the primary digital asset"
+    - "Digital ecosystem — website, listings, social and analytics — operating together"
+    - "Marketing model running end to end, from discovery through to enquiry handling"
+    - "Ongoing build: results will be reported once measured over a meaningful period"
+learning: "Owning the business changes how you weigh marketing decisions. When the cost of a bad channel choice is your own inventory sitting still, you stop optimising for activity and start optimising for what actually moves stock."

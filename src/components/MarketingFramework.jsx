@@ -1,9 +1,7 @@
 import Reveal from './Reveal.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { framework, frameworkSteps } from '../content/index.js'
 
 export default function MarketingFramework() {
-  const framework = useSection('framework')
-
   return (
     <section className="section section--alt framework">
       <div className="shell">
@@ -18,13 +16,13 @@ export default function MarketingFramework() {
         </Reveal>
 
         <ol className="framework__grid">
-          {(framework.items ?? []).map((step, i) => (
+          {frameworkSteps.map((step, i) => (
             <Reveal as="li" key={`${step.title}-${i}`} className="framework__step" delay={i * 80}>
               <span className="framework__number">{step.number}</span>
               <h3 className="framework__title">{step.title}</h3>
               <p className="framework__caption">{step.caption}</p>
               <ul className="framework__items">
-                {(step.items ?? []).map((item) => (
+                {(step.points ?? []).map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

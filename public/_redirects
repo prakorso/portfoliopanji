@@ -1,2 +1,6 @@
-/assets/*  /assets/:splat  200
-/*         /index.html     200
+/api/auth      /.netlify/functions/auth      200
+/api/callback  /.netlify/functions/callback  200
+/admin         /admin/index.html             200
+/assets/*      /assets/:splat                200
+/uploads/*     /uploads/:splat               200
+/*             /index.html                   200

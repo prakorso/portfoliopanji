@@ -1,15 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { navLinks } from '../data/site.js'
-import { useSection } from '../content/ContentProvider.jsx'
+import { navLinks } from '../content/navigation.js'
+import { site, contactSection as contact } from '../content/index.js'
 import { Menu, Close, Monogram } from './Icons.jsx'
 
 export default function Navbar() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
-  const general = useSection('general')
-  const contact = useSection('contact')
-  const [firstName, ...restName] = (general.name ?? '').split(' ')
+  const [firstName, ...restName] = (site.name ?? '').split(' ')
 
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -129,7 +127,7 @@ export default function Navbar() {
           )}
         </nav>
         <div className="mobile-menu__foot">
-          <span className="label label--bare">{general.tagline}</span>
+          <span className="label label--bare">{site.tagline}</span>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
       </div>

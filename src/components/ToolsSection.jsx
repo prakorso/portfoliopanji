@@ -1,9 +1,7 @@
 import Reveal from './Reveal.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { tools } from '../content/index.js'
 
 export default function ToolsSection() {
-  const tools = useSection('tools')
-
   return (
     <section className="section section--tight tools">
       <div className="shell tools__inner">

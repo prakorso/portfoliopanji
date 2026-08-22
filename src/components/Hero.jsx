@@ -1,11 +1,7 @@
-import { useSection } from '../content/ContentProvider.jsx'
-import { mediaPublicUrl } from '../lib/supabase.js'
+import { hero, stats } from '../content/index.js'
 import { ArrowRight } from './Icons.jsx'
 
 export default function Hero() {
-  const hero = useSection('hero')
-  const stats = useSection('stats')
-
   return (
     <section id="home" className="hero">
       <div className="hero__backdrop" aria-hidden="true">
@@ -45,7 +41,7 @@ export default function Hero() {
             <span className="portrait__dots" aria-hidden="true" />
             <img
               className="portrait__img"
-              src={mediaPublicUrl(hero.image)}
+              src={hero.image}
               alt={hero.imageAlt}
               width="720"
               height="900"
@@ -63,7 +59,7 @@ export default function Hero() {
 
       <div className="shell">
         <ul className="hero__stats">
-          {(stats.items ?? []).map((stat, i) => (
+          {stats.map((stat, i) => (
             <li key={`${stat.label}-${i}`} className="hero__stat">
               <span className="hero__stat-value">{stat.value}</span>
               <span className="hero__stat-label">{stat.label}</span>

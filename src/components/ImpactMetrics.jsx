@@ -1,9 +1,7 @@
 import Reveal from './Reveal.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { impact } from '../content/index.js'
 
 export default function ImpactMetrics() {
-  const impact = useSection('impact')
-
   return (
     <section className="section section--tight impact">
       <div className="shell impact__inner">

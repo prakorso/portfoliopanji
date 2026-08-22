@@ -10,13 +10,19 @@ export default function ProjectCard({ project, isActive = false }) {
   return (
     <article className={`project-card ${isActive ? 'is-active' : ''}`}>
       <div className="project-card__media">
-        <ProjectVisual variant={project.visual} />
+        {/* An uploaded image replaces the built-in abstract visual when set. */}
+        {project.heroImage ? (
+          <img className="project-card__image" src={project.heroImage} alt="" loading="lazy" />
+        ) : (
+          <ProjectVisual variant={project.visual} />
+        )}
+        {project.logo && <img className="project-card__logo" src={project.logo} alt="" loading="lazy" />}
         <span className="project-card__number">{project.number}</span>
       </div>
 
       <div className="project-card__body">
         <p className="project-card__category">{project.category}</p>
-        <h3 className="project-card__title">{project.displayTitle}</h3>
+        <h3 className="project-card__title">{project.displayTitle || project.title}</h3>
         <p className="project-card__desc">{project.shortDescription}</p>
 
         {hasMetrics ? (

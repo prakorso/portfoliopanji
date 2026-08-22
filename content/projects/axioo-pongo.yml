@@ -1,0 +1,103 @@
+title: "Axioo / Pongo"
+slug: "axioo-pongo"
+displayTitle: "AXIOO / PONGO"
+number: "03"
+category: "Brand / Digital / Performance"
+categoryShort: "Brand / Digital / Performance"
+year: ""
+order: 3
+featured: true
+heroImage: ""
+logo: ""
+visual: "devices"
+tags:
+  - "Brand"
+  - "Digital Presence"
+  - "Full-Funnel"
+  - "Creator Marketing"
+shortDescription: "Building digital presence, customer engagement and measurable growth across Axioo and Pongo."
+heroDescription: "Brand, digital and performance working as one system across a technology manufacturer and its gaming line — from digital presence through to full-funnel acquisition."
+cardMetrics:
+  - value: "4X"
+    label: "YoY Sales Growth"
+  - value: "+727%"
+    label: "Total Users"
+  - value: "-77%"
+    label: "CPC"
+chapters:
+  - label: "Brand Context"
+    title: "A local technology brand and its gaming line"
+    body:
+      - "Axioo is an Indonesian technology and laptop brand; Pongo is its gaming-focused line. The two share infrastructure but speak to different audiences — one broad and value-led, the other enthusiast, community-driven and highly comparison-oriented."
+      - "The work spanned both: a single digital and performance operating model, with brand expression and messaging tuned per audience."
+    bullets: []
+    columns: []
+  - label: "Digital Ecosystem"
+    title: "Presence built to convert, not just to exist"
+    body:
+      - "The digital estate was treated as a growth asset: the website, product pages and campaign destinations all measured on their contribution to engaged sessions and conversion, not on traffic alone."
+    bullets:
+      - "Website and product experience as the centre of the ecosystem"
+      - "Campaign landing experiences aligned to ad message and audience"
+      - "Analytics, event tracking and dashboarding for shared visibility"
+      - "SEO and content supporting non-paid discovery"
+    columns: []
+  - label: "Full-Funnel Marketing"
+    title: "One funnel, three jobs"
+    body:
+      - "Rather than running awareness and performance as separate budgets, activity was planned as a single funnel with distinct jobs at each stage and a clear hand-off between them."
+    bullets: []
+    columns:
+      - title: "Awareness"
+        items:
+          - "Brand and product storytelling"
+          - "Creator and community reach"
+          - "Broad-audience video and social"
+      - title: "Consideration"
+        items:
+          - "Comparison and spec-led content"
+          - "Retargeting from engaged audiences"
+          - "Review and community proof"
+      - title: "Conversion"
+        items:
+          - "High-intent search and shopping"
+          - "Offer and launch campaigns"
+          - "Marketplace and retail alignment"
+  - label: "Performance Marketing"
+    title: "Efficiency earned through structure and testing"
+    body:
+      - "Performance gains came from campaign architecture and disciplined iteration rather than from spending more: cleaner audience separation, sharper creative-to-intent matching and continuous pruning of what did not earn its budget."
+    bullets:
+      - "Campaign restructure around audience intent and funnel stage"
+      - "Systematic creative testing on hooks, formats and messaging"
+      - "Bid, budget and placement optimisation against efficiency targets"
+      - "Landing-page and post-click experience improvements"
+      - "Measurement framework connecting spend to engaged sessions and sales"
+    columns: []
+  - label: "Creator Partnerships"
+    title: "Community credibility as a growth channel"
+    body:
+      - "In gaming and technology, third-party credibility outperforms brand claims. Creator partnerships were used to build genuine product proof, then that content was recycled into paid placements where it consistently outperformed studio-made assets."
+    bullets:
+      - "Creator selection based on audience fit over follower count"
+      - "Product-led briefs that allowed honest, native treatment"
+      - "Creator content repurposed into paid social and retargeting"
+      - "Community engagement sustained beyond campaign windows"
+    columns: []
+impact:
+  label: "Selected Historical Impact"
+  attribution: "Axioo Indonesia"
+  note: "These are selected historical results achieved during my time at Axioo Indonesia. They describe past performance in that role and period — not current 2026 results, and not a projection of future outcomes."
+  items:
+    - value: "4X"
+      label: "YoY Sales Growth"
+    - value: "+727%"
+      label: "Total Users"
+    - value: "-77%"
+      label: "CPC"
+    - value: "+276%"
+      label: "CTR"
+    - value: "13.24X"
+      label: "Website Engaged Sessions"
+  qualitative: []
+learning: "Brand and performance are not competing budgets. The cheapest clicks came from the work that built credibility first — creator proof and a stronger brand made every performance campaign that followed more efficient."

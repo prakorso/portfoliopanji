@@ -1,0 +1,94 @@
+title: "99 Group"
+slug: "99-group"
+displayTitle: "99 GROUP"
+number: "01"
+category: "Performance / Growth / Customer Acquisition"
+categoryShort: "Performance / Growth"
+year: ""
+order: 1
+featured: true
+heroImage: ""
+logo: ""
+visual: "dashboard"
+tags:
+  - "Paid Media"
+  - "Lead Quality"
+  - "Funnel Optimisation"
+  - "Analytics"
+shortDescription: "Improving acquisition quality, campaign efficiency and customer growth."
+heroDescription: "Moving the acquisition conversation from volume to quality — tightening audiences, targeting and campaign optimisation so every lead that enters the funnel is worth working."
+cardMetrics:
+  - value: "-30%+"
+    label: "Spam Rate"
+  - value: "+20%"
+    label: "Qualified Lead Conversion"
+  - value: "15–25%"
+    label: "CPL Efficiency"
+chapters:
+  - label: "Context"
+    title: "A high-volume acquisition engine with a quality problem"
+    body:
+      - "99 Group operates at property-marketplace scale, where paid media runs continuously across multiple markets and lead volume is never the constraint."
+      - "My focus sat on the demand side of that engine: the campaigns, audiences and funnel steps that decide not just how many leads arrive, but how many of them a sales team can actually work."
+    bullets: []
+    columns: []
+  - label: "Challenge"
+    title: "Acquisition volume does not always translate into acquisition quality"
+    body:
+      - "Campaigns optimised purely for lead volume were pulling in a growing share of spam and low-intent submissions. That inflated reported performance while quietly increasing cost per usable lead and eroding trust in the numbers downstream."
+    bullets:
+      - "Lead volume looked healthy while qualified conversion lagged behind"
+      - "Spam and low-intent form fills consumed sales capacity"
+      - "Cost per lead was optimised in isolation from lead quality"
+      - "Channel performance was hard to compare without a shared quality signal"
+    columns: []
+  - label: "Strategy"
+    title: "Optimise for qualified demand, not raw submissions"
+    body:
+      - "The strategy re-anchored every optimisation decision to a quality-weighted definition of success, then worked backwards into audience, targeting and creative."
+    bullets: []
+    columns:
+      - title: "Audience Strategy"
+        items:
+          - "Intent-led audience segmentation"
+          - "Separating prospecting from retargeting economics"
+          - "Prioritising segments with proven downstream conversion"
+      - title: "Targeting"
+        items:
+          - "Tighter geo, placement and device targeting"
+          - "Exclusions built from historic low-quality sources"
+          - "Message-to-audience matching by funnel stage"
+      - title: "Campaign Optimisation"
+        items:
+          - "Bidding and budget shifted toward qualified outcomes"
+          - "Structured creative and landing-page testing"
+          - "Continuous pruning of underperforming placements"
+      - title: "Quality Control"
+        items:
+          - "Form and validation hardening against spam"
+          - "Lead-quality feedback loop back into campaigns"
+          - "Shared quality reporting across channels"
+  - label: "Execution"
+    title: "A repeatable optimisation loop"
+    body:
+      - "Execution ran as a weekly cycle rather than a one-off fix: read the quality signal, act on the campaign, measure the downstream effect, then reset the baseline."
+    bullets:
+      - "Rebuilt campaign structure around quality-weighted objectives"
+      - "Applied validation and filtering to reduce spam at the point of capture"
+      - "Fed qualified-lead outcomes back into bidding and audience decisions"
+      - "Ran structured tests on creative, copy and landing experience"
+      - "Reported on cost per qualified lead alongside cost per lead"
+    columns: []
+impact:
+  label: "Measured Impact"
+  attribution: "99 Group — performance & growth marketing"
+  note: "Results reflect the acquisition-quality programme described above, measured against the pre-optimisation baseline."
+  items:
+    - value: "-30%+"
+      label: "Spam Rate"
+    - value: "+20%"
+      label: "Qualified Lead Conversion"
+    - value: "15–25%"
+      label: "CPL Efficiency"
+  qualitative: []
+learning: "Efficiency and quality are the same problem viewed from two ends. Once qualified conversion became the metric campaigns were judged on, cost per lead improved as a by-product — not the other way around."

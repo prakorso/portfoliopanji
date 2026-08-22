@@ -1,11 +1,9 @@
 import Reveal from './Reveal.jsx'
 import CapabilityCards from './CapabilityCards.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { aboutSection as about } from '../content/index.js'
 import { Download } from './Icons.jsx'
 
 export default function AboutSection() {
-  const about = useSection('about')
-
   return (
     <section id="about" className="section about">
       <div className="shell about__inner">

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Content Manager — Panji Prakorso</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <!-- Manual init so the OAuth host can be derived from wherever this is served,
+         which keeps one config working on the live site, deploy previews and localhost. -->
+    <script>
+      window.CMS_MANUAL_INIT = true
+    </script>
+    <script src="/admin/decap-cms.js"></script>
+    <script>
+      window.CMS.init({
+        config: {
+          backend: { base_url: window.location.origin }
+        }
+      })
+    </script>
+  </body>
+</html>

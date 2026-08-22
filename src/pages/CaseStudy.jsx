@@ -2,14 +2,13 @@ import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import ProjectVisual from '../components/visuals/ProjectVisual.jsx'
-import { useProject, useProjects } from '../content/ContentProvider.jsx'
+import { getProject, getRelatedProjects } from '../content/index.js'
 import { ArrowLeft, ArrowRight } from '../components/Icons.jsx'
 
 /** Reusable case-study template — every project renders through this one component. */
 export default function CaseStudy() {
   const { slug } = useParams()
-  const project = useProject(slug)
-  const allProjects = useProjects()
+  const project = getProject(slug)
 
   useEffect(() => {
     if (project) document.title = `${project.title} — Case Study | Panji Prakorso`
@@ -17,7 +16,7 @@ export default function CaseStudy() {
 
   if (!project) return <Navigate to="/404" replace />
 
-  const related = allProjects.filter((p) => p.slug !== slug)
+  const related = getRelatedProjects(slug)
   const impact = project.impact ?? {}
   const impactItems = impact.items ?? []
   const hasNumbers = impactItems.length > 0
@@ -39,7 +38,7 @@ export default function CaseStudy() {
           <div className="case__hero-grid">
             <div>
               <span className="case__number">{project.number}</span>
-              <h1 className="case__title">{project.displayTitle}</h1>
+              <h1 className="case__title">{project.displayTitle || project.title}</h1>
               <p className="case__category">{project.category}</p>
               <p className="case__lead">{project.heroDescription}</p>
               <ul className="case__tags">
@@ -50,7 +49,11 @@ export default function CaseStudy() {
             </div>
 
             <div className="case__hero-visual">
-              <ProjectVisual variant={project.visual} />
+              {project.heroImage ? (
+                <img className="case__hero-image" src={project.heroImage} alt="" />
+              ) : (
+                <ProjectVisual variant={project.visual} />
+              )}
             </div>
           </div>
         </div>
@@ -140,14 +143,16 @@ export default function CaseStudy() {
       </section>
 
       {/* ---------- Learning ---------- */}
-      <section className="section case__learning">
-        <div className="shell">
-          <Reveal className="case__learning-inner">
-            <span className="label">Key learning</span>
-            <blockquote className="case__quote">{project.learning}</blockquote>
-          </Reveal>
-        </div>
-      </section>
+      {project.learning && (
+        <section className="section case__learning">
+          <div className="shell">
+            <Reveal className="case__learning-inner">
+              <span className="label">Key learning</span>
+              <blockquote className="case__quote">{project.learning}</blockquote>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* ---------- Related ---------- */}
       <section className="section section--alt case__related">
@@ -162,7 +167,7 @@ export default function CaseStudy() {
               <Reveal key={item.slug} delay={i * 90}>
                 <Link to={`/projects/${item.slug}`} className="related-card">
                   <span className="related-card__number">{item.number}</span>
-                  <h3 className="related-card__title">{item.displayTitle}</h3>
+                  <h3 className="related-card__title">{item.displayTitle || item.title}</h3>
                   <p className="related-card__category">{item.categoryShort}</p>
                   <p className="related-card__desc">{item.shortDescription}</p>
                   <span className="link-cta related-card__cta">

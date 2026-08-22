@@ -1,10 +1,8 @@
 import Reveal from './Reveal.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { contactSection as contact } from '../content/index.js'
 import { ArrowRight, Mail, Phone, Pin, LinkedIn } from './Icons.jsx'
 
 export default function ContactSection() {
-  const contact = useSection('contact')
-
   return (
     <section id="contact" className="section contact">
       <span className="contact__mark" aria-hidden="true">

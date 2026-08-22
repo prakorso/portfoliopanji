@@ -1,0 +1,398 @@
+# Decap CMS configuration — the admin at /admin edits the YAML files in /content.
+#
+# Saving commits to GitHub, which triggers a Netlify build, which publishes the
+# site. There is no database and no separate publish step.
+
+backend:
+  name: github
+  repo: prakorso/portfoliopanji
+  branch: main
+  # base_url is set at runtime in index.html to wherever the CMS is served from.
+  # It points at the OAuth functions in netlify/functions/.
+  auth_endpoint: api/auth
+
+# Lets `npm run cms:proxy` write to local files during development.
+local_backend: true
+
+# Default upload location; collections and fields below override it.
+media_folder: public/uploads/general
+public_folder: /uploads/general
+
+publish_mode: simple
+
+collections:
+  # ---------------------------------------------------------------- Pages
+  - name: pages
+    label: Pages
+    label_singular: Page
+    delete: false
+    editor:
+      preview: false
+    files:
+      # -------------------------------------------------------- Homepage
+      - name: homepage
+        label: Homepage
+        file: content/homepage.yml
+        format: yml
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - label: Main heading
+                name: headingLines
+                widget: list
+                label_singular: Heading line
+                summary: "{{fields.text}}"
+                fields:
+                  - { label: Text, name: text, widget: string }
+                  - { label: Highlight in blue, name: accent, widget: boolean, default: false }
+              - { label: Description, name: description, widget: text }
+              - { label: Primary CTA text, name: primaryCtaLabel, widget: string }
+              - { label: Primary CTA link, name: primaryCtaHref, widget: string, hint: "Use #projects for a section on this page, or a full URL." }
+              - { label: Secondary CTA text, name: secondaryCtaLabel, widget: string }
+              - { label: Secondary CTA link, name: secondaryCtaHref, widget: string }
+              - label: Hero image
+                name: image
+                widget: image
+                required: false
+                media_folder: /public/uploads/profile
+                public_folder: /uploads/profile
+                hint: "Portrait crop (4:5) works best."
+              - { label: Hero image alt text, name: imageAlt, widget: string, required: false }
+              - { label: Image badge, name: badge, widget: string, required: false }
+
+          - label: Statistics
+            name: stats
+            widget: list
+            label_singular: Statistic
+            summary: "{{fields.value}} — {{fields.label}}"
+            fields:
+              - { label: Value, name: value, widget: string, hint: "e.g. 8+" }
+              - { label: Label, name: label, widget: string, hint: "e.g. Years Experience" }
+
+          - label: Featured projects heading
+            name: projectsSection
+            widget: object
+            fields:
+              - { label: Section label, name: label, widget: string }
+              - { label: Section title, name: title, widget: string }
+              - { label: Subheadline, name: lead, widget: text }
+
+          - label: Featured projects
+            name: featuredProjects
+            widget: list
+            label_singular: Project
+            hint: "Which projects appear in the homepage carousel, in this order. Drag to reorder."
+            field:
+              label: Project
+              name: project
+              widget: relation
+              collection: projects
+              search_fields: [title]
+              display_fields: [title]
+              value_field: "{{slug}}"
+
+          - label: Impact
+            name: impact
+            widget: object
+            fields:
+              - { label: Section label, name: label, widget: string }
+              - { label: Heading, name: title, widget: string }
+              - label: Metrics
+                name: items
+                widget: list
+                label_singular: Metric
+                summary: "{{fields.value}} — {{fields.label}}"
+                fields:
+                  - { label: Metric, name: value, widget: string }
+                  - { label: Metric label, name: label, widget: string }
+              - { label: Attribution, name: attribution, widget: string, required: false }
+              - label: Supporting / disclaimer text
+                name: note
+                widget: text
+                required: false
+                hint: "Keep the attribution and time period explicit."
+
+      # ----------------------------------------------------------- About
+      - name: about
+        label: About
+        file: content/about.yml
+        format: yml
+        fields:
+          - { label: Section label, name: label, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Heading (highlighted part), name: headingAccent, widget: string, required: false }
+          - { label: Description, name: description, widget: text }
+          - { label: Supporting note, name: note, widget: text, required: false }
+          - label: About image
+            name: image
+            widget: image
+            required: false
+            media_folder: /public/uploads/profile
+            public_folder: /uploads/profile
+            hint: "Optional — the approved About layout does not display an image."
+          - { label: CV button text, name: cvLabel, widget: string, required: false }
+          - label: CV download file
+            name: cvUrl
+            widget: file
+            required: false
+            media_folder: /public/uploads/general
+            public_folder: /uploads/general
+            hint: "Upload your CV PDF. Leave empty to hide the Download CV button."
+          - label: Marketing disciplines
+            name: disciplines
+            widget: list
+            label_singular: Discipline
+            summary: "{{fields.number}} — {{fields.title}}"
+            fields:
+              - { label: Number, name: number, widget: string }
+              - { label: Title, name: title, widget: string }
+              - label: Short description
+                name: description
+                widget: string
+                required: false
+                hint: "Optional. Leave empty to keep the current card design."
+              - label: Icon
+                name: icon
+                widget: select
+                options:
+                  - { label: "Brand (hexagon)", value: brand }
+                  - { label: "Digital (screen)", value: digital }
+                  - { label: "Performance (target)", value: performance }
+                  - { label: "Growth (trend line)", value: growth }
+              - label: Points
+                name: points
+                widget: list
+                field: { label: Point, name: point, widget: string }
+
+      # ------------------------------------------------------ Experience
+      - name: experience
+        label: Experience
+        file: content/experience.yml
+        format: yml
+        fields:
+          - { label: Section label, name: label, widget: string }
+          - { label: Section title, name: title, widget: string }
+          - { label: Intro, name: lead, widget: text, required: false }
+          - label: Milestones
+            name: milestones
+            widget: list
+            label_singular: Milestone
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { label: Year, name: year, widget: string }
+              - { label: Position / title, name: title, widget: string }
+              - label: Company
+                name: company
+                widget: string
+                required: false
+                hint: "Optional. A company line appears only when filled in."
+              - { label: Description, name: description, widget: text }
+              - label: Achievements
+                name: achievements
+                widget: list
+                required: false
+                hint: "Optional bullet points."
+                field: { label: Achievement, name: achievement, widget: string }
+              - { label: Display order, name: order, widget: number, value_type: int, default: 1 }
+
+      # ---------------------------------------------------------- Skills
+      - name: skills
+        label: Skills
+        file: content/skills.yml
+        format: yml
+        fields:
+          - label: Tools & technologies
+            name: tools
+            widget: object
+            fields:
+              - { label: Section label, name: label, widget: string }
+              - { label: Section title, name: title, widget: string }
+              - label: Groups
+                name: groups
+                widget: list
+                label_singular: Group
+                summary: "{{fields.group}}"
+                fields:
+                  - { label: Group name, name: group, widget: string }
+                  - label: Tools
+                    name: tools
+                    widget: list
+                    field: { label: Tool, name: tool, widget: string }
+          - label: How I think
+            name: framework
+            widget: object
+            fields:
+              - { label: Section label, name: label, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Title (highlighted part), name: titleAccent, widget: string, required: false }
+              - { label: Intro, name: lead, widget: text, required: false }
+              - label: Steps
+                name: steps
+                widget: list
+                label_singular: Step
+                summary: "{{fields.number}} — {{fields.title}}"
+                fields:
+                  - { label: Number, name: number, widget: string }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Caption, name: caption, widget: string, required: false }
+                  - label: Points
+                    name: points
+                    widget: list
+                    field: { label: Point, name: point, widget: string }
+
+      # --------------------------------------------------------- Contact
+      - name: contact
+        label: Contact
+        file: content/contact.yml
+        format: yml
+        fields:
+          - { label: Section label, name: label, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Title (highlighted part), name: titleAccent, widget: string, required: false }
+          - { label: Supporting text, name: lead, widget: text }
+          - { label: CTA text, name: ctaLabel, widget: string }
+          - { label: Email, name: email, widget: string }
+          - label: Phone
+            name: phone
+            widget: string
+            required: false
+            hint: "Optional. A phone row appears only when filled in."
+          - { label: Location, name: location, widget: string, required: false }
+          - { label: LinkedIn label, name: linkedinLabel, widget: string, required: false }
+          - { label: LinkedIn URL, name: linkedinUrl, widget: string, required: false }
+          - { label: Instagram label, name: instagramLabel, widget: string, required: false }
+          - { label: Instagram URL, name: instagramUrl, widget: string, required: false }
+
+      # ------------------------------------------------- Site & footer
+      - name: general
+        label: Site & footer
+        file: content/general.yml
+        format: yml
+        fields:
+          - { label: Name, name: siteName, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+
+  # ------------------------------------------------------------- Projects
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    extension: yml
+    format: yml
+    create: true
+    delete: true
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{number}} · {{title}}"
+    media_folder: /public/uploads/projects
+    public_folder: /uploads/projects
+    editor:
+      preview: false
+    fields:
+      - { label: Project name, name: title, widget: string }
+      - label: Slug
+        name: slug
+        widget: string
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Lowercase letters, numbers and dashes only"]
+        hint: "The page address: /projects/<slug>. Changing this on an existing project changes its URL."
+      - { label: Display title, name: displayTitle, widget: string, required: false, hint: "Shown in capitals on the card." }
+      - { label: Number, name: number, widget: string, hint: "e.g. 01" }
+      - { label: Category, name: category, widget: string }
+      - { label: Short category, name: categoryShort, widget: string, required: false, hint: "Used on related-project cards." }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Display order, name: order, widget: number, value_type: int, default: 1 }
+      - { label: Featured, name: featured, widget: boolean, default: true, hint: "Also add it to the Homepage featured list to show it in the carousel." }
+      - label: Hero image
+        name: heroImage
+        widget: image
+        required: false
+        hint: "Optional. Replaces the built-in abstract graphic on the card and case study."
+      - label: Project logo
+        name: logo
+        widget: image
+        required: false
+        hint: "Optional. Shown in the corner of the project card."
+      - label: Built-in graphic
+        name: visual
+        widget: select
+        default: dashboard
+        hint: "Used when no hero image is uploaded."
+        options:
+          - { label: "Dashboard / campaign", value: dashboard }
+          - { label: "Automotive", value: automotive }
+          - { label: "Devices / laptop", value: devices }
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Card description, name: shortDescription, widget: text }
+      - { label: Case study intro, name: heroDescription, widget: text }
+      - label: Card metrics
+        name: cardMetrics
+        widget: list
+        required: false
+        label_singular: Metric
+        summary: "{{fields.value}} — {{fields.label}}"
+        hint: "Leave empty to show the tags on the card instead."
+        fields:
+          - { label: Value, name: value, widget: string }
+          - { label: Label, name: label, widget: string }
+      - label: Case study sections
+        name: chapters
+        widget: list
+        required: false
+        label_singular: Section
+        summary: "{{fields.label}} — {{fields.title}}"
+        hint: "Context, Challenge, Strategy, Execution — in the order they appear."
+        fields:
+          - { label: Section label, name: label, widget: string, hint: "e.g. Context" }
+          - { label: Section title, name: title, widget: string }
+          - label: Paragraphs
+            name: body
+            widget: list
+            required: false
+            field: { label: Paragraph, name: paragraph, widget: text }
+          - label: Bullet points
+            name: bullets
+            widget: list
+            required: false
+            field: { label: Bullet, name: bullet, widget: string }
+          - label: Columns
+            name: columns
+            widget: list
+            required: false
+            label_singular: Column
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Column title, name: title, widget: string }
+              - label: Items
+                name: items
+                widget: list
+                field: { label: Item, name: item, widget: string }
+      - label: Measured impact
+        name: impact
+        widget: object
+        fields:
+          - { label: Impact label, name: label, widget: string, default: "Measured Impact", hint: "e.g. Measured Impact" }
+          - { label: Attribution, name: attribution, widget: string, required: false }
+          - { label: Attribution note, name: note, widget: text, required: false }
+          - label: Metrics
+            name: items
+            widget: list
+            required: false
+            label_singular: Metric
+            summary: "{{fields.value}} — {{fields.label}}"
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+          - label: Qualitative points
+            name: qualitative
+            widget: list
+            required: false
+            hint: "Use these instead of metrics where no verified number exists."
+            field: { label: Point, name: point, widget: string }
+      - { label: Key learning, name: learning, widget: text, required: false }

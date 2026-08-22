@@ -1,17 +1,42 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Static assets resolve normally — a missing file 404s instead of returning the SPA shell
+# --- Decap CMS GitHub OAuth (see netlify/functions/) -------------------------
+# Requires GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET environment variables.
+[[redirects]]
+  from = "/api/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/callback"
+  to = "/.netlify/functions/callback"
+  status = 200
+
+# --- Static files ------------------------------------------------------------
+# These resolve normally; a missing file 404s instead of returning the SPA shell.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
 [[redirects]]
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
 
-# Single-page app: let React Router handle /projects/* routes
+[[redirects]]
+  from = "/uploads/*"
+  to = "/uploads/:splat"
+  status = 200
+
+# --- Single-page app ---------------------------------------------------------
+# React Router handles /projects/* routes.
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -21,3 +46,8 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

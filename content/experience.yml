@@ -1,0 +1,34 @@
+label: "Experience"
+title: "Career Milestones"
+lead: "Eight years of compounding scope — from commercial foundation to manager-level marketing across brand, digital, performance and growth."
+milestones:
+  - year: "2018"
+    title: "Professional Foundation"
+    company: ""
+    description: "Commercial and marketing fundamentals — understanding customers, products and how a business actually makes money."
+    achievements: []
+    order: 1
+  - year: "2022"
+    title: "Digital Marketing Transition"
+    company: ""
+    description: "Moved into digital: owned channels, website, content and analytics as the core of the marketing mix."
+    achievements: []
+    order: 2
+  - year: "2023"
+    title: "Digital & Performance Marketing"
+    company: ""
+    description: "Combined digital execution with paid media and measurement — campaigns judged on acquisition, not activity."
+    achievements: []
+    order: 3
+  - year: "2025"
+    title: "Performance Marketing Leadership"
+    company: ""
+    description: "Leading acquisition quality, campaign efficiency and full-funnel optimisation at marketplace scale."
+    achievements: []
+    order: 4
+  - year: "2026"
+    title: "Manager-Level Growth"
+    company: ""
+    description: "Operating across brand, digital, performance and growth — building marketing systems that compound."
+    achievements: []
+    order: 5

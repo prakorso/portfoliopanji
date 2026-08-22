@@ -1,0 +1,59 @@
+tools:
+  label: "Tools & Technologies"
+  title: "What I work with"
+  groups:
+    - group: "Performance & Analytics"
+      tools:
+        - "Google Ads"
+        - "Meta Ads"
+        - "Google Analytics"
+        - "Looker Studio"
+        - "SEO"
+    - group: "Technical"
+      tools:
+        - "HTML / CSS"
+        - "JavaScript"
+        - "Python"
+        - "SQL"
+    - group: "Workflow"
+      tools:
+        - "Airtable"
+        - "Figma"
+        - "WordPress"
+framework:
+  label: "How I think"
+  title: "A four-step way of working,"
+  titleAccent: "applied to every brief."
+  lead: "Strategy before channel, execution before opinion, data before the next budget. The same loop runs whether the goal is brand, acquisition or efficiency."
+  steps:
+    - number: "01"
+      title: "Understand"
+      caption: "Start with the business, not the channel."
+      points:
+        - "Business"
+        - "Customer"
+        - "Market"
+    - number: "02"
+      title: "Strategize"
+      caption: "Decide where to play before deciding how to spend."
+      points:
+        - "Positioning"
+        - "Audience"
+        - "Channel"
+        - "Funnel"
+    - number: "03"
+      title: "Execute"
+      caption: "Ship the work — consistently, across the whole funnel."
+      points:
+        - "Campaign"
+        - "Content"
+        - "Digital"
+        - "Performance"
+    - number: "04"
+      title: "Optimize"
+      caption: "Let the data decide what earns the next budget."
+      points:
+        - "Data"
+        - "Testing"
+        - "Efficiency"
+        - "Growth"

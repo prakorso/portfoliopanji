@@ -1,13 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-import { navLinks } from '../data/site.js'
-import { useSection } from '../content/ContentProvider.jsx'
+import { navLinks } from '../content/navigation.js'
+import { site, contactSection as contact } from '../content/index.js'
 import { ArrowUp, LinkedIn, Instagram } from './Icons.jsx'
 
 export default function Footer() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
-  const general = useSection('general')
-  const contact = useSection('contact')
   const year = new Date().getFullYear()
 
   return (
@@ -15,9 +13,9 @@ export default function Footer() {
       <div className="shell footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__name">
-            {general.name}
+            {site.name}
           </Link>
-          <p className="footer__tagline">{general.tagline}</p>
+          <p className="footer__tagline">{site.tagline}</p>
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
@@ -60,7 +58,7 @@ export default function Footer() {
 
       <div className="shell footer__bottom">
         <p>
-          © {year} {general.name}. All rights reserved.
+          © {year} {site.name}. All rights reserved.
         </p>
         <button
           type="button"

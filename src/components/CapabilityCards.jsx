@@ -1,13 +1,11 @@
 import Reveal from './Reveal.jsx'
-import { useSection } from '../content/ContentProvider.jsx'
+import { disciplines } from '../content/index.js'
 import { CapabilityIcon } from './Icons.jsx'
 
 export default function CapabilityCards() {
-  const disciplines = useSection('disciplines')
-
   return (
     <div className="capabilities">
-      {(disciplines.items ?? []).map((cap, i) => (
+      {disciplines.map((cap, i) => (
         <Reveal key={`${cap.title}-${i}`} as="article" className="capability" delay={i * 70}>
           <div className="capability__head">
             <span className="capability__icon">
@@ -18,7 +16,7 @@ export default function CapabilityCards() {
           <h3 className="capability__title">{cap.title}</h3>
           {cap.description && <p className="capability__desc">{cap.description}</p>}
           <ul className="capability__list">
-            {(cap.items ?? []).map((item) => (
+            {(cap.points ?? []).map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
