@@ -44,7 +44,7 @@ Create it, then **Generate a new client secret**. Copy both the **Client ID** an
 
 These stay on the server. They are never sent to the browser.
 
-### 3. Confirm the repository in the CMS config
+### 3. The branch must match Netlify
 
 `public/admin/config.yml` starts with:
 
@@ -55,7 +55,20 @@ backend:
   branch: main
 ```
 
-If your repository or default branch is named differently, correct it here.
+**This branch has to be the same branch Netlify deploys**, and it has to exist on
+GitHub. It is the single most common way this setup breaks:
+
+- If the branch does not exist, saving fails with **"Branch not found"**, and image
+  uploads fail too — an upload is just another commit.
+- If the branch exists but Netlify deploys a different one, saving appears to work
+  but the live site never changes.
+
+Netlify's production branch is under **Site configuration → Build & deploy →
+Branches and deploy contexts → Production branch**.
+
+A build-time check (`scripts/check-cms-branch.mjs`) compares the two on every
+production deploy and fails the build with an explanation if they disagree, so a
+mismatch can't go unnoticed.
 
 ### 4. Deploy
 
@@ -156,6 +169,10 @@ directly. Commit the changes yourself when you're happy.
 | Login popup opens then closes, still signed out | Callback URL in the GitHub OAuth App doesn't exactly match `https://your-site/api/callback` |
 | "GITHUB_CLIENT_ID is not set" | Environment variables missing in Netlify, or the site hasn't been redeployed since adding them |
 | Saved, but the site looks unchanged | The Netlify build is still running — check **Deploys**. Builds take a minute or two |
+| Saving fails with "Branch not found" | `branch:` in `public/admin/config.yml` names a branch that doesn't exist on GitHub |
+| Saving works but the site never changes | `branch:` names a real branch that Netlify isn't deploying — check Netlify's production branch |
+| The Netlify build fails with "CMS branch mismatch" | Deliberate: the CMS branch and the deployed branch disagree. The error message names both and how to fix it |
+| Image upload fails | Uploads are commits, so they fail for the same reasons as saving — check the two rows above |
 | Login works but saving fails | That GitHub account lacks push access to the repository |
 | A project vanished from the homepage | It was removed from **Homepage → Featured projects** (its own page still works) |
 
