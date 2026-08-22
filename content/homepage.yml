@@ -14,7 +14,7 @@ hero:
   primaryCtaHref: "#projects"
   secondaryCtaLabel: "Get in touch"
   secondaryCtaHref: "#contact"
-  image: "/assets/portrait.svg"
+  image: "/uploads/profile/cms-test-photo.png"
   imageAlt: "Panji Prakorso, marketing professional"
   badge: "Brand · Digital · Performance · Growth"
 stats:
