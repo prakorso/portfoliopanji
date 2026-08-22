@@ -119,6 +119,24 @@ Open `/admin` on your site. The sidebar has two sections:
 
 **Projects** — one entry per case study. Add, edit, reorder, delete.
 
+### The live preview
+
+Every editing screen shows the page beside the fields. It uses the real site
+stylesheet, so what you see is what gets published, and it updates as you type —
+no saving or waiting for a deploy.
+
+- A small blue chip on each section names it, so it is obvious which fields
+  control which part of the page.
+- Sections a screen does not own — About and Contact inside the Homepage
+  preview, for example — are shown from the last saved content and their chip
+  says where to edit them.
+- Pick a photo and it appears in the preview immediately, before it is saved.
+- **Desktop / Mobile** at the bottom right of the preview switches the width so
+  you can check how a change looks on a phone.
+
+The preview is a picture of the finished page — it is not an editor. Layout is
+controlled by the site's code; the CMS controls the words and pictures.
+
 ### Publishing
 
 The **Publish** button in the top right saves. It commits to GitHub straight away;
@@ -144,8 +162,12 @@ committed to the repository under `public/uploads/`:
 | `uploads/projects/` | Project hero images and logos |
 | `uploads/general/` | Everything else, including your CV PDF |
 
-**To change your portrait:** Homepage → Hero → Hero image → *Choose different image* →
-upload → Publish. A 4:5 portrait crop works best.
+**To change your portrait:** Homepage → ① Hero → Hero photo → *Choose different image*
+→ upload → Publish. A tall portrait crop (about 4 wide by 5 tall) fits best.
+
+Use **JPG or PNG**. Photos straight from an iPhone are often `.heic`, which browsers
+cannot display — the file will upload but the page will show a gap where the photo
+should be. Export or convert to JPG first.
 
 **To add your CV:** About → CV download file → upload the PDF → Publish. The *Download CV*
 button on the site is hidden while this is empty, and appears once you upload one.

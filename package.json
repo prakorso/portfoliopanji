@@ -5,12 +5,12 @@
   "type": "module",
   "description": "Personal portfolio for Panji Prakorso \u2014 Marketing, Digital, Performance & Growth.",
   "scripts": {
-    "dev": "npm run cms:copy && vite",
-    "build": "npm run cms:copy && node scripts/check-cms-branch.mjs && vite build",
+    "dev": "npm run cms:assets && vite",
+    "build": "npm run cms:assets && node scripts/check-cms-branch.mjs && vite build",
     "preview": "vite preview",
-    "cms:copy": "node scripts/copy-decap.mjs",
     "cms:proxy": "decap-server",
-    "cms:check": "node scripts/check-cms-branch.mjs"
+    "cms:check": "node scripts/check-cms-branch.mjs",
+    "cms:assets": "node scripts/build-admin-assets.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
