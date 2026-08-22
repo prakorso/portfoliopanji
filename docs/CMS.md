@@ -10,6 +10,28 @@ Edit at /admin  →  commit to GitHub  →  Netlify builds  →  site updated
 
 ---
 
+## Production branch
+
+`main` is the production branch. It is what Decap commits to and what Netlify should
+deploy.
+
+The repository also still contains `claude/panji-portfolio-design-4u1hvb`, the branch
+the site was originally built on. Both point at the same commit. Once Netlify is
+deploying `main` and you have confirmed the site is fine, that branch can be deleted —
+nothing references it.
+
+Two settings need to agree, or the CMS breaks:
+
+| Where | Setting | Value |
+| --- | --- | --- |
+| Netlify | Site configuration → Build & deploy → Branches → Production branch | `main` |
+| This repo | `public/admin/config.yml` → `backend.branch` | `main` |
+
+GitHub's own default branch (Settings → General → Default branch) doesn't affect the
+CMS, but setting it to `main` keeps things tidy.
+
+---
+
 ## One-time setup
 
 You only do this once. Until it is done, `/admin` will load but sign-in will fail.
