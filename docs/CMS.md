@@ -10,22 +10,52 @@ Edit at /admin  →  commit to GitHub  →  Netlify builds  →  site updated
 
 ---
 
-## Production branch
+## Branches: staging and production
 
-`main` is the production branch. It is what Decap commits to and what Netlify should
-deploy.
+Editing never touches the live site directly.
+
+```
+/admin  →  staging branch  →  Netlify staging deploy  →  you review
+                                                             ↓
+                                            merge staging → main
+                                                             ↓
+                                      Netlify production deploy (live site)
+                                                             ↓
+                                     staging is synced back to main
+```
+
+| Branch | Role | Who writes to it |
+| --- | --- | --- |
+| `staging` | Workspace and preview | Decap CMS, on every save |
+| `main` | Production — the live site | Only you, by promoting staging |
+
+Save as often as you like: each save deploys to the staging URL, and the public site
+stays exactly as it is until you promote.
+
+### Promoting staging to production
+
+When the staging site looks right, open a pull request from `staging` into `main` on
+GitHub and merge it. Netlify then builds `main` and the live site updates.
+
+A GitHub Action (`.github/workflows/sync-staging.yml`) runs after every push to `main`
+and brings `staging` back in line, so the two never drift. It only writes to
+`staging` — it never modifies `main`, never force-pushes, and does nothing at all when
+the branches already match.
+
+`main` is the production branch. It is what Netlify deploys.
 
 The repository also still contains `claude/panji-portfolio-design-4u1hvb`, the branch
 the site was originally built on. Both point at the same commit. Once Netlify is
 deploying `main` and you have confirmed the site is fine, that branch can be deleted —
 nothing references it.
 
-Two settings need to agree, or the CMS breaks:
+Three settings need to agree:
 
 | Where | Setting | Value |
 | --- | --- | --- |
 | Netlify | Site configuration → Build & deploy → Branches → Production branch | `main` |
-| This repo | `public/admin/config.yml` → `backend.branch` | `main` |
+| Netlify | Site configuration → Build & deploy → Branches → Branch deploys | include `staging` |
+| This repo | `public/admin/config.yml` → `backend.branch` | `staging` |
 
 GitHub's own default branch (Settings → General → Default branch) doesn't affect the
 CMS, but setting it to `main` keeps things tidy.
@@ -139,8 +169,9 @@ controlled by the site's code; the CMS controls the words and pictures.
 
 ### Publishing
 
-The **Publish** button in the top right saves. It commits to GitHub straight away;
-Netlify picks it up and rebuilds. Give it a minute or two, then refresh the site.
+The **Publish** button in the top right saves. It commits to the `staging` branch;
+Netlify rebuilds the staging site a minute or two later. The live site does not
+change until you promote staging to main — see **Branches** above.
 
 ### Choosing which projects appear on the homepage
 
@@ -214,7 +245,8 @@ directly. Commit the changes yourself when you're happy.
 | "GITHUB_CLIENT_ID is not set" | Environment variables missing in Netlify, or the site hasn't been redeployed since adding them |
 | Saved, but the site looks unchanged | The Netlify build is still running — check **Deploys**. Builds take a minute or two |
 | Saving fails with "Branch not found" | `branch:` in `public/admin/config.yml` names a branch that doesn't exist on GitHub |
-| Saving works but the site never changes | `branch:` names a real branch that Netlify isn't deploying — check Netlify's production branch |
+| Saving works but the staging site never changes | `staging` has no branch deploy in Netlify — add it under Branches and deploy contexts |
+| Saving changes the live site immediately | The CMS is pointed at the production branch; `backend.branch` should be `staging`. The build now fails with "The CMS is pointed at the production branch" when this happens |
 | The Netlify build fails with "CMS branch mismatch" | Deliberate: the CMS branch and the deployed branch disagree. The error message names both and how to fix it |
 | Image upload fails | Uploads are commits, so they fail for the same reasons as saving — check the two rows above |
 | Login works but saving fails | That GitHub account lacks push access to the repository |

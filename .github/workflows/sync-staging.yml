@@ -1,0 +1,67 @@
+name: Sync staging with main
+
+# Runs after production moves, so staging goes back to matching main once a
+# release has been promoted. It only ever writes to staging — main is never
+# modified here, and nothing is force-pushed.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-staging
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bring staging up to date with main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          main_sha="$(git rev-parse origin/main)"
+
+          # First run: staging does not exist yet, so branch it off main.
+          if ! git show-ref --verify --quiet refs/remotes/origin/staging; then
+            echo "staging does not exist — creating it from main"
+            git push origin "$main_sha:refs/heads/staging"
+            exit 0
+          fi
+
+          staging_sha="$(git rev-parse origin/staging)"
+
+          # Already identical: do nothing rather than add an empty commit.
+          if [ "$staging_sha" = "$main_sha" ]; then
+            echo "staging already matches main ($main_sha) — nothing to do"
+            exit 0
+          fi
+
+          # main is already contained in staging: nothing to bring across.
+          if git merge-base --is-ancestor "$main_sha" "$staging_sha"; then
+            echo "staging already contains main — nothing to do"
+            exit 0
+          fi
+
+          # staging has no commits of its own: fast-forward it, no merge commit.
+          if git merge-base --is-ancestor "$staging_sha" "$main_sha"; then
+            echo "fast-forwarding staging to main"
+            git push origin "$main_sha:refs/heads/staging"
+            exit 0
+          fi
+
+          # staging has moved on (edits made since the promotion). Merge main
+          # into it so those edits survive; never the other way around.
+          echo "staging has its own commits — merging main into staging"
+          git checkout -B staging "$staging_sha"
+          git merge --no-ff --no-edit "$main_sha" -m "Merge main into staging after production release"
+          git push origin staging
