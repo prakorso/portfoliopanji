@@ -1,12 +1,12 @@
 hero:
-  badge: Brand · Digital · Performance · Growth
+  badge: ""
   primaryCtaLabel: Featured Project
   secondaryCtaHref: "#contact"
   eyebrow: MARKETING PROFESSIONAL EXPERIENCED
   imageAlt: Panji Prakorso - Photo
   secondaryCtaLabel: Get in touch
   primaryCtaHref: "#projects"
-  image: ""
+  image: /uploads/profile/chatgpt-image-aug-23-2026-04_52_31-pm.png
   description: Marketing professional building brands, driving customer
     acquisition, and turning digital strategy into measurable business impact.
   headingLines:
