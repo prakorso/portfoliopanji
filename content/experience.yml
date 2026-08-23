@@ -1,34 +1,54 @@
-label: "Experience"
-title: "Career Milestones"
-lead: "Eight years of compounding scope — from commercial foundation to manager-level marketing across brand, digital, performance and growth."
+label: Experience
+title: Career Milestones
+lead: Eight years of professional experience — evolving from commercial and
+  operational foundations into digital, performance and marketing leadership.
 milestones:
   - year: "2018"
-    title: "Professional Foundation"
-    company: ""
-    description: "Commercial and marketing fundamentals — understanding customers, products and how a business actually makes money."
+    title: Production Planning & Shipping Control
+    company: PT Astra Honda Motor
+    description: Built a strong operational and commercial foundation through
+      production planning, inventory control and cross-functional coordination
+      in a high-volume manufacturing environment.
     achievements: []
     order: 1
-  - year: "2022"
-    title: "Digital Marketing Transition"
-    company: ""
-    description: "Moved into digital: owned channels, website, content and analytics as the core of the marketing mix."
-    achievements: []
+    startDate: October 2018
+    endDate: May 2023
+  - achievements: []
+    endDate: January 2024
     order: 2
-  - year: "2023"
-    title: "Digital & Performance Marketing"
-    company: ""
-    description: "Combined digital execution with paid media and measurement — campaigns judged on acquisition, not activity."
-    achievements: []
+    startDate: June 2023
+    promotionDate: February 2024
+    promotionNote: Promoted to Digital Marketing Supervisor
+    title: Digital Marketing Specialist
+    joinedAs: Digital Marketing Specialist
+    description: Transitioned into digital marketing, managing multi-channel
+      campaigns across Meta, Google, TikTok and Display while using audience
+      insights, testing and performance data to improve campaign outcomes.
+    year: "2023"
+    company: AXIOO INDONESIA
+  - achievements: []
+    endDate: January 2026
     order: 3
-  - year: "2025"
-    title: "Performance Marketing Leadership"
-    company: ""
-    description: "Leading acquisition quality, campaign efficiency and full-funnel optimisation at marketplace scale."
-    achievements: []
+    startDate: July 2024
+    promotionDate: July 2024
+    promotionNote: Promoted to Digital Marketing & Performance Lead
+    title: Digital Marketing & Performance Lead
+    joinedAs: Digital Marketing Supervisor
+    description: Expanded into full-funnel marketing, connecting brand, digital and
+      performance initiatives with commercial objectives, media efficiency and
+      measurable growth.
+    year: "2024"
+    company: AXIOO INDONESIA
+  - achievements: []
+    endDate: Present
     order: 4
-  - year: "2026"
-    title: "Manager-Level Growth"
-    company: ""
-    description: "Operating across brand, digital, performance and growth — building marketing systems that compound."
-    achievements: []
-    order: 5
+    startDate: January 2026
+    promotionDate: June 2026
+    promotionNote: Promoted to Performance Marketing Manager
+    title: Performance Marketing Manager
+    joinedAs: Senior Performance Marketing
+    description: Progressed from Senior Performance Marketing into management,
+      expanding responsibility across acquisition strategy, lead quality,
+      campaign efficiency and team development.
+    year: "2026"
+    company: 99 Group | RUmah123
