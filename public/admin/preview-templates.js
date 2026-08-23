@@ -537,6 +537,7 @@
 
   function Contact(contact, chipLabel) {
     contact = contact || {}
+    var whatsapp = whatsAppUrl(contact.phone)
     function row(label, value, href) {
       if (!value) return null
       var props = { className: 'contact__row' }
@@ -566,7 +567,17 @@
           h('span', { className: 'label' }, text(contact.label, 'Label')),
           h('h2', { className: 'contact__title' }, text(contact.title, "Let's build"), ' ', h('span', { className: 'accent' }, contact.titleAccent || '')),
           h('p', { className: 'contact__lead' }, contact.lead || ''),
-          h('span', { className: 'btn contact__cta' }, text(contact.ctaLabel, 'Get in touch'), ARROW)
+          h(
+            'a',
+            {
+              className: 'btn contact__cta',
+              href: whatsapp || (contact.email ? 'mailto:' + contact.email : undefined),
+              target: whatsapp ? '_blank' : undefined,
+              rel: whatsapp ? 'noopener noreferrer' : undefined
+            },
+            text(contact.ctaLabel, 'Get in touch'),
+            ARROW
+          )
         ),
         h(
           'div',

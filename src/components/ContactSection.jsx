@@ -19,7 +19,14 @@ export default function ContactSection() {
             {contact.title} <span className="accent">{contact.titleAccent}</span>
           </h2>
           <p className="contact__lead">{contact.lead}</p>
-          <a className="btn contact__cta" href={`mailto:${contact.email}`}>
+          <a
+            className="btn contact__cta"
+            /* Opens WhatsApp using the same number as the phone row. Falls back
+               to email when there is no usable number, so the button is never
+               dead and never needs its own field in the CMS. */
+            href={whatsapp || `mailto:${contact.email}`}
+            {...(whatsapp ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
             {contact.ctaLabel} <ArrowRight />
           </a>
         </Reveal>
