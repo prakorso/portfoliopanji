@@ -255,12 +255,52 @@ collections:
             hint: Each entry becomes one point on the timeline, ordered by the number you give it below.
             fields:
               - { label: Year, name: year, widget: string }
-              - { label: Position or title, name: title, widget: string }
+              - label: Current position
+                name: title
+                widget: string
+                hint: >-
+                  The job title shown on the timeline. If you were promoted
+                  inside this company, put the title you hold now — the earlier
+                  title goes in "Joined as" below, not in a separate milestone.
               - label: Company
                 name: company
                 widget: string
                 required: false
-                hint: Optional. A small blue company line appears under the title only when filled in.
+                hint: Optional. A small blue company line appears under the position only when filled in.
+              - label: Start date
+                name: startDate
+                widget: string
+                required: false
+                hint: 'Optional, written however you like, for example "January 2026".'
+              - label: End date
+                name: endDate
+                widget: string
+                required: false
+                hint: Optional. Leave empty if this is your current role.
+              - label: Joined as
+                name: joinedAs
+                widget: string
+                required: false
+                hint: >-
+                  Optional. The title you started with at this company, if it
+                  differs from the current position. Shown as a small supporting
+                  line, for example "Joined as Senior Performance Marketing".
+              - label: Promotion date
+                name: promotionDate
+                widget: string
+                required: false
+                hint: >-
+                  Optional. When you were promoted within this company, for
+                  example "June 2026". Shown as a small "Promoted June 2026" line
+                  — it does not create a second milestone.
+              - label: Promotion note
+                name: promotionNote
+                widget: string
+                required: false
+                hint: >-
+                  Optional. Use instead of the plain date line if you want to
+                  say more, for example "Promoted to Performance Marketing
+                  Manager".
               - { label: Short description, name: description, widget: text }
               - label: Achievements
                 name: achievements

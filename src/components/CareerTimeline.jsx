@@ -92,6 +92,19 @@ export default function CareerTimeline() {
         >
           <span className="timeline__rail" aria-hidden="true" />
           {milestones.map((m, i) => {
+            /*
+              Optional career-progression details. A promotion inside the same
+              company stays part of this one milestone rather than becoming a
+              second point on the timeline. Every line renders only when its
+              field is filled in, so entries without them look exactly as before.
+            */
+            const dates = [m.startDate, m.endDate].filter(Boolean).join(' – ')
+            const promotion = m.promotionNote
+              ? [m.promotionNote, m.promotionDate].filter(Boolean).join(' · ')
+              : m.promotionDate
+                ? `Promoted ${m.promotionDate}`
+                : ''
+
             const body = (
               <>
                 <span className="milestone__marker" aria-hidden="true">
@@ -100,6 +113,13 @@ export default function CareerTimeline() {
                 <span className="milestone__year">{m.year}</span>
                 <h3 className="milestone__title">{m.title}</h3>
                 {m.company && <p className="milestone__company">{m.company}</p>}
+                {(dates || m.joinedAs || promotion) && (
+                  <div className="milestone__progression">
+                    {dates && <p className="milestone__dates">{dates}</p>}
+                    {m.joinedAs && <p className="milestone__joined">Joined as {m.joinedAs}</p>}
+                    {promotion && <p className="milestone__promotion">{promotion}</p>}
+                  </div>
+                )}
                 <p className="milestone__text">{m.description}</p>
                 {(m.achievements ?? []).length > 0 && (
                   <ul className="milestone__achievements">

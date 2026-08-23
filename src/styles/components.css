@@ -2151,3 +2151,43 @@
   height: 1px;
   background: var(--accent-bright);
 }
+
+/*
+  Optional career-progression lines inside a milestone (dates, the title someone
+  joined as, an internal promotion). Deliberately lighter than the position
+  above them, and each renders only when its content field is filled in, so a
+  milestone without them is unchanged.
+*/
+
+.milestone__progression {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.milestone__dates,
+.milestone__joined,
+.milestone__promotion {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.milestone__promotion {
+  position: relative;
+  padding-left: 0.85rem;
+  color: var(--text-muted);
+}
+
+.milestone__promotion::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-soft);
+}

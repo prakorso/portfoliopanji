@@ -331,6 +331,14 @@
           },
           h('span', { className: 'timeline__rail' }),
           items.map(function (m, i) {
+            // Same optional progression lines as the site: a promotion inside a
+            // company stays part of this milestone instead of adding another.
+            var dates = [m.startDate, m.endDate].filter(Boolean).join(' – ')
+            var promotion = m.promotionNote
+              ? [m.promotionNote, m.promotionDate].filter(Boolean).join(' · ')
+              : m.promotionDate
+                ? 'Promoted ' + m.promotionDate
+                : ''
             return h(
               'li',
               { key: i, className: 'milestone' },
@@ -338,6 +346,15 @@
               h('span', { className: 'milestone__year' }, text(m.year, '20XX')),
               h('h3', { className: 'milestone__title' }, text(m.title, 'Position')),
               m.company ? h('p', { className: 'milestone__company' }, m.company) : null,
+              dates || m.joinedAs || promotion
+                ? h(
+                    'div',
+                    { className: 'milestone__progression' },
+                    dates ? h('p', { className: 'milestone__dates' }, dates) : null,
+                    m.joinedAs ? h('p', { className: 'milestone__joined' }, 'Joined as ' + m.joinedAs) : null,
+                    promotion ? h('p', { className: 'milestone__promotion' }, promotion) : null
+                  )
+                : null,
               h('p', { className: 'milestone__text' }, m.description || ''),
               list(m.achievements).length
                 ? h(
