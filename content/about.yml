@@ -1,45 +1,50 @@
-label: "About me"
-heading: "Marketing at the intersection of"
-headingAccent: "Brand, Digital, Performance & Growth."
-description: "Combining marketing strategy, digital execution, performance marketing and customer acquisition to build measurable growth."
-note: "Eight years across consumer technology, marketplace and entrepreneurial businesses — the through-line is the same: understand the customer, build the funnel, and prove the impact with data."
+label: About me
+heading: Marketing at the intersection of
+headingAccent: Brand, Digital, Performance & Growth.
+description: I bring together marketing strategy, digital execution and
+  performance thinking to connect customer needs with measurable business
+  outcomes.
+note: Across different businesses and marketing environments, I’ve worked from
+  brand and digital foundations through acquisition, performance and growth —
+  learning to connect the full marketing journey rather than optimize one
+  channel in isolation.
 image: ""
-cvLabel: "Download CV"
-cvUrl: ""
+cvLabel: Download CV
+cvUrl: https://drive.google.com/file/d/1moMoyDcCBLHgHmXX0sjFXAsmsrPea3M-/view?usp=drive_link
 disciplines:
   - number: "01"
-    title: "Brand"
+    title: Brand
     description: ""
-    icon: "brand"
+    icon: brand
     points:
-      - "Consumer insight"
-      - "Brand strategy"
-      - "Content"
-      - "Creator marketing"
+      - Consumer insight
+      - Brand strategy
+      - Content
+      - Brand Communication
   - number: "02"
-    title: "Digital"
+    title: Digital
     description: ""
-    icon: "digital"
+    icon: digital
     points:
-      - "Digital strategy"
-      - "Website"
-      - "SEO"
-      - "Social media"
+      - Digital strategy
+      - Digital Experience
+      - Content & Social
+      - Website & Analytics
   - number: "03"
-    title: "Performance"
+    title: Performance
     description: ""
-    icon: "performance"
+    icon: performance
     points:
-      - "Paid media"
-      - "Customer acquisition"
-      - "Lead generation"
-      - "Optimization"
+      - Paid media
+      - Customer acquisition
+      - Lead generation
+      - Campaign Optimization
   - number: "04"
-    title: "Growth"
+    title: Growth
     description: ""
-    icon: "growth"
+    icon: growth
     points:
-      - "Funnel strategy"
-      - "Analytics"
-      - "ROI"
-      - "Growth strategy"
+      - Funnel strategy
+      - Marketing Analytics
+      - Conversion Optimization
+      - Growth strategy
