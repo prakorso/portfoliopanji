@@ -323,7 +323,12 @@
         ),
         h(
           'ol',
-          { className: 'timeline' },
+          {
+            className: 'timeline',
+            // Same two properties the site uses, so the preview reflows exactly
+            // as the published page will when milestones are added or removed.
+            style: { '--n': items.length || 1, '--visible': Math.min(Math.max(items.length, 1), 5) }
+          },
           h('span', { className: 'timeline__rail' }),
           items.map(function (m, i) {
             return h(

@@ -630,20 +630,55 @@
   max-width: 40ch;
 }
 
+/*
+  The track is sized from two custom properties set by the component:
+    --n        how many milestones there are
+    --visible  how many share the width before it starts scrolling
+
+  For --n <= --visible the cards divide the full width exactly, so the first
+  sits at the start and the last at the end with no leftover slot. Beyond that
+  the card width stays fixed and the track scrolls.
+*/
 .timeline {
+  --gap: clamp(1.25rem, 2.4vw, 2rem);
+  --n: 1;
+  --visible: 5;
+  --card: calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible));
+
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 2rem);
+  display: flex;
+  gap: var(--gap);
   margin-top: clamp(3rem, 5vw, 4.5rem);
   counter-reset: milestone;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Room for the reveal transform without adding height to the section. */
+  padding-bottom: 26px;
+  margin-bottom: -26px;
+}
+
+.timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: -1rem;
 }
 
 .timeline__rail {
   position: absolute;
   top: 7px;
   left: 0;
-  right: 0;
+  right: auto;
+  /* Spans the whole track, including the part scrolled out of view. */
+  width: calc(var(--n) * var(--card) + (var(--n) - 1) * var(--gap));
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -656,6 +691,8 @@
 
 .milestone {
   position: relative;
+  flex: 0 0 var(--card);
+  scroll-snap-align: start;
   padding-top: 2.5rem;
 }
 
@@ -712,10 +749,17 @@
 
 @media (max-width: 1024px) {
   .timeline {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    flex-wrap: wrap;
     row-gap: 2.5rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
-  .timeline__rail {
+  .milestone {
+    flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+  }
+  .timeline__rail,
+  .timeline__controls {
     display: none;
   }
   .milestone {
@@ -725,9 +769,13 @@
 
 @media (max-width: 700px) {
   .timeline {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    flex-wrap: nowrap;
     row-gap: 0;
     padding-left: 1.75rem;
+  }
+  .milestone {
+    flex: 0 0 auto;
   }
   .timeline__rail {
     display: block;
