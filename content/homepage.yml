@@ -1,28 +1,29 @@
 hero:
-  badge: Marketing . Digital . brand . growth
-  primaryCtaLabel: Featured Project
+  badge: ""
+  primaryCtaLabel: view my work
   secondaryCtaHref: "#contact"
-  eyebrow: MARKETING PROFESSIONAL EXPERIENCED
+  eyebrow: MARKETING PROFESSIONAL
   imageAlt: Panji Prakorso - Photo
   secondaryCtaLabel: Get in touch
   primaryCtaHref: "#projects"
   image: /uploads/profile/png-panji.png
-  description: Marketing professional building brands, driving customer
-    acquisition, and turning digital strategy into measurable business impact.
+  description: Marketing professional with experience across brand, digital, and
+    performance turning customer insight and marketing strategy into measurable
+    growth.
   headingLines:
     - text: Marketing
       accent: false
-    - text: Digital
+    - text: Brand
       accent: false
-    - text: Performance
+    - text: Digital
       accent: true
-    - text: Growth
+    - text: Perfromance
       accent: true
 stats:
   - value: 8+
     label: Years Professional Experience
   - value: "3"
-    label: Featured Projects
+    label: Selected Projects
   - value: "4"
     label: Marketing Disciplines
 projectsSection:
