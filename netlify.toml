@@ -47,7 +47,11 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# The CMS must never run against a stale config: a cached config.yml is how a
+# save can end up on the wrong branch. Revalidate every admin asset instead of
+# serving it from cache (304s keep this cheap for the CMS bundle).
 [[headers]]
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex"
+    Cache-Control = "no-cache"

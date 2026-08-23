@@ -12,17 +12,66 @@
          which keeps one config working on the live site, deploy previews and localhost. -->
     <script>
       window.CMS_MANUAL_INIT = true
+
+      /*
+        The branch every save must land on.
+
+        This is pinned here as well as in config.yml on purpose. Decap reads
+        config.yml once at page load, so a cached copy naming the old branch
+        would silently send saves to production. Passing the branch to CMS.init
+        overrides whatever config.yml said, and the check below refuses to start
+        the CMS at all if the two disagree.
+      */
+      window.CMS_CONTENT_BRANCH = 'staging'
     </script>
     <script src="/admin/preview-content.js"></script>
     <script src="/admin/decap-cms.js"></script>
     <script src="/admin/preview-templates.js"></script>
     <script src="/admin/preview-viewport.js"></script>
     <script>
-      window.CMS.init({
-        config: {
-          backend: { base_url: window.location.origin }
+      ;(function () {
+        var expected = window.CMS_CONTENT_BRANCH
+
+        function refuse(configured) {
+          document.body.innerHTML =
+            '<div style="max-width:34rem;margin:12vh auto;padding:2rem;font:15px/1.6 system-ui,sans-serif;' +
+            'color:#e8eef6;background:#0d1725;border:1px solid rgba(148,163,184,.2);border-radius:14px">' +
+            '<h1 style="margin:0 0 .75rem;font-size:1.15rem">The content manager did not start</h1>' +
+            '<p style="margin:0 0 .75rem;color:#94a3b8">It is set to save to <strong style="color:#e8eef6">' +
+            configured +
+            '</strong>, but this site expects <strong style="color:#e8eef6">' +
+            expected +
+            '</strong>. It has been stopped rather than risk writing to the live site.</p>' +
+            '<p style="margin:0;color:#94a3b8">Fix <code>backend.branch</code> in ' +
+            '<code>public/admin/config.yml</code>, or hard-refresh this page if the branch was changed recently.</p>' +
+            '</div>'
         }
-      })
+
+        function start() {
+          window.CMS.init({
+            config: {
+              backend: {
+                base_url: window.location.origin,
+                // Authoritative: this wins over a cached config.yml.
+                branch: expected
+              }
+            }
+          })
+        }
+
+        // Read the config the CMS will use, bypassing any cached copy.
+        fetch('/admin/config.yml', { cache: 'no-store' })
+          .then(function (response) {
+            return response.ok ? response.text() : ''
+          })
+          .then(function (text) {
+            var match = text.match(/^[ \t]*branch:[ \t]*(\S+)/m)
+            var configured = match && match[1]
+            if (configured && configured !== expected) refuse(configured)
+            else start()
+          })
+          .catch(start)
+      })()
     </script>
   </body>
 </html>

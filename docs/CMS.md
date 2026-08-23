@@ -12,37 +12,52 @@ Edit at /admin  →  commit to GitHub  →  Netlify builds  →  site updated
 
 ## Branches: staging and production
 
-Editing never touches the live site directly.
+Editing never touches the live site.
 
 ```
 /admin  →  staging branch  →  Netlify staging deploy  →  you review
                                                              ↓
-                                            merge staging → main
+                                    you merge staging → main (a pull request)
                                                              ↓
                                       Netlify production deploy (live site)
-                                                             ↓
-                                     staging is synced back to main
 ```
 
 | Branch | Role | Who writes to it |
 | --- | --- | --- |
 | `staging` | Workspace and preview | Decap CMS, on every save |
-| `main` | Production — the live site | Only you, by promoting staging |
+| `main` | Production — the live site | Only you, by merging a pull request |
 
-Save as often as you like: each save deploys to the staging URL, and the public site
+Nothing moves between the branches on its own. There is no scheduled or automatic
+sync in either direction: `main` changes only when you merge, and `staging` changes
+only when you save in the CMS or merge into it yourself.
+
+Save as often as you like. Each save deploys to the staging URL and the public site
 stays exactly as it is until you promote.
+
+### Why the branch is pinned in two places
+
+`public/admin/config.yml` names the branch, and `public/admin/index.html` pins it
+again and passes it to the CMS at start-up.
+
+That is deliberate. Decap reads `config.yml` once when the page loads, so a browser
+or CDN holding an old copy would keep saving to whatever branch that old copy named
+— which is how a CMS edit once landed on `main` after the branch had been changed.
+The value passed at start-up wins over the file, `/admin/*` is served with
+`Cache-Control: no-cache` so the file is always revalidated, and if the two ever
+disagree the CMS refuses to start and says so rather than writing to the wrong
+branch.
 
 ### Promoting staging to production
 
-When the staging site looks right, open a pull request from `staging` into `main` on
-GitHub and merge it. Netlify then builds `main` and the live site updates.
+When the staging site looks right:
 
-A GitHub Action (`.github/workflows/sync-staging.yml`) runs after every push to `main`
-and brings `staging` back in line, so the two never drift. It only writes to
-`staging` — it never modifies `main`, never force-pushes, and does nothing at all when
-the branches already match.
+1. Go to **https://github.com/prakorso/portfoliopanji/compare/main...staging**
+2. **Create pull request** → **Merge pull request**
 
-`main` is the production branch. It is what Netlify deploys.
+Netlify builds `main` and the live site updates a minute or two later.
+
+After merging, `main` contains everything `staging` had, so the two are level again
+and the next edit carries on from there. Nothing needs syncing back.
 
 The repository also still contains `claude/panji-portfolio-design-4u1hvb`, the branch
 the site was originally built on. Both point at the same commit. Once Netlify is
