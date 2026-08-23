@@ -6,10 +6,10 @@
 backend:
   name: github
   repo: prakorso/portfoliopanji
-  # Saving in the CMS commits here, never straight to production. Netlify builds
-  # this branch as a staging deploy for review; promoting it to production is a
-  # separate, deliberate merge into main.
-  branch: staging
+  # The production branch. Saving in the CMS commits here and Netlify rebuilds
+  # the live site from it. Keep this in step with Netlify's production branch
+  # (Site configuration -> Build & deploy -> Branches).
+  branch: main
   # base_url is set at runtime in index.html to wherever the CMS is served from.
   # It points at the OAuth functions in netlify/functions/.
   auth_endpoint: api/auth

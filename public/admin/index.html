@@ -14,15 +14,15 @@
       window.CMS_MANUAL_INIT = true
 
       /*
-        The branch every save must land on.
+        The branch every save must land on — the same branch Netlify deploys.
 
         This is pinned here as well as in config.yml on purpose. Decap reads
-        config.yml once at page load, so a cached copy naming the old branch
-        would silently send saves to production. Passing the branch to CMS.init
-        overrides whatever config.yml said, and the check below refuses to start
-        the CMS at all if the two disagree.
+        config.yml once at page load, so a browser or CDN holding an old copy
+        would keep saving to whatever branch that copy named. Passing the branch
+        to CMS.init overrides whatever config.yml said, and the check below
+        refuses to start the CMS at all if the two disagree.
       */
-      window.CMS_CONTENT_BRANCH = 'staging'
+      window.CMS_CONTENT_BRANCH = 'main'
     </script>
     <script src="/admin/preview-content.js"></script>
     <script src="/admin/decap-cms.js"></script>
@@ -41,7 +41,7 @@
             configured +
             '</strong>, but this site expects <strong style="color:#e8eef6">' +
             expected +
-            '</strong>. It has been stopped rather than risk writing to the live site.</p>' +
+            '</strong>. It has been stopped rather than risk writing to the wrong branch.</p>' +
             '<p style="margin:0;color:#94a3b8">Fix <code>backend.branch</code> in ' +
             '<code>public/admin/config.yml</code>, or hard-refresh this page if the branch was changed recently.</p>' +
             '</div>'
