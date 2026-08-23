@@ -4,7 +4,7 @@ import { whatsAppUrl } from '../lib/whatsapp.js'
 import { ArrowRight, Mail, Phone, Pin, LinkedIn } from './Icons.jsx'
 
 export default function ContactSection() {
-  const whatsapp = whatsAppUrl(contact.phone, contact.phoneCountryCode)
+  const whatsapp = whatsAppUrl(contact.phone)
 
   return (
     <section id="contact" className="section contact">
@@ -43,7 +43,7 @@ export default function ContactSection() {
               /* Opens WhatsApp when the number can be read as international,
                  otherwise stays a normal dial link rather than a dead wa.me one. */
               href={whatsapp || `tel:${contact.phone.replace(/[^+\d]/g, '')}`}
-              {...(whatsapp ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+              {...(whatsapp ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               <span className="contact__icon">
                 <Phone />

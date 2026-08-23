@@ -116,16 +116,14 @@
    * Mirror of src/lib/whatsapp.js so the preview links exactly like the site.
    * Keep the two in step.
    */
-  function whatsAppUrl(phone, countryCode) {
+  function whatsAppUrl(phone) {
     if (!phone) return ''
     var digits = String(phone).replace(/\D/g, '')
     if (!digits) return ''
     if (digits.indexOf('00') === 0) {
       digits = digits.slice(2)
     } else if (digits.charAt(0) === '0') {
-      var code = String(countryCode == null ? '' : countryCode).replace(/\D/g, '')
-      if (!code) return ''
-      digits = code + digits.slice(1)
+      digits = '62' + digits.slice(1)
     }
     return /^[1-9]\d{7,14}$/.test(digits) ? 'https://wa.me/' + digits : ''
   }
@@ -545,7 +543,7 @@
       if (href) {
         props.href = href
         props.target = '_blank'
-        props.rel = 'noreferrer noopener'
+        props.rel = 'noopener noreferrer'
       }
       return h(
         href ? 'a' : 'span',
@@ -574,7 +572,7 @@
           'div',
           { className: 'contact__details' },
           row('Email', contact.email, contact.email ? 'mailto:' + contact.email : ''),
-          row('Phone', contact.phone, whatsAppUrl(contact.phone, contact.phoneCountryCode)),
+          row('Phone', contact.phone, whatsAppUrl(contact.phone)),
           row('LinkedIn', contact.linkedinLabel, contact.linkedinUrl),
           row('Location', contact.location)
         )
