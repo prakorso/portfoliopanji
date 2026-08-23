@@ -17,7 +17,7 @@ hero:
       accent: false
     - text: Digital
       accent: true
-    - text: Perfromance
+    - text: Performance
       accent: true
 stats:
   - value: 8+
