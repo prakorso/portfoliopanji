@@ -112,6 +112,24 @@
     return value
   }
 
+  /**
+   * Mirror of src/lib/whatsapp.js so the preview links exactly like the site.
+   * Keep the two in step.
+   */
+  function whatsAppUrl(phone, countryCode) {
+    if (!phone) return ''
+    var digits = String(phone).replace(/\D/g, '')
+    if (!digits) return ''
+    if (digits.indexOf('00') === 0) {
+      digits = digits.slice(2)
+    } else if (digits.charAt(0) === '0') {
+      var code = String(countryCode == null ? '' : countryCode).replace(/\D/g, '')
+      if (!code) return ''
+      digits = code + digits.slice(1)
+    }
+    return /^[1-9]\d{7,14}$/.test(digits) ? 'https://wa.me/' + digits : ''
+  }
+
   function chip(label) {
     return h('span', { className: 'pv-chip' }, label)
   }
@@ -521,11 +539,17 @@
 
   function Contact(contact, chipLabel) {
     contact = contact || {}
-    function row(label, value) {
+    function row(label, value, href) {
       if (!value) return null
+      var props = { className: 'contact__row' }
+      if (href) {
+        props.href = href
+        props.target = '_blank'
+        props.rel = 'noreferrer noopener'
+      }
       return h(
-        'span',
-        { className: 'contact__row' },
+        href ? 'a' : 'span',
+        props,
         h('span', { className: 'contact__icon' }, icon(['M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z'])),
         h('span', null, h('span', { className: 'contact__row-label' }, label), value)
       )
@@ -546,7 +570,14 @@
           h('p', { className: 'contact__lead' }, contact.lead || ''),
           h('span', { className: 'btn contact__cta' }, text(contact.ctaLabel, 'Get in touch'), ARROW)
         ),
-        h('div', { className: 'contact__details' }, row('Email', contact.email), row('Phone', contact.phone), row('LinkedIn', contact.linkedinLabel), row('Location', contact.location))
+        h(
+          'div',
+          { className: 'contact__details' },
+          row('Email', contact.email, contact.email ? 'mailto:' + contact.email : ''),
+          row('Phone', contact.phone, whatsAppUrl(contact.phone, contact.phoneCountryCode)),
+          row('LinkedIn', contact.linkedinLabel, contact.linkedinUrl),
+          row('Location', contact.location)
+        )
       )
     )
   }

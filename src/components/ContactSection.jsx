@@ -1,8 +1,11 @@
 import Reveal from './Reveal.jsx'
 import { contactSection as contact } from '../content/index.js'
+import { whatsAppUrl } from '../lib/whatsapp.js'
 import { ArrowRight, Mail, Phone, Pin, LinkedIn } from './Icons.jsx'
 
 export default function ContactSection() {
+  const whatsapp = whatsAppUrl(contact.phone, contact.phoneCountryCode)
+
   return (
     <section id="contact" className="section contact">
       <span className="contact__mark" aria-hidden="true">
@@ -35,7 +38,13 @@ export default function ContactSection() {
           )}
 
           {contact.phone && (
-            <a className="contact__row" href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`}>
+            <a
+              className="contact__row"
+              /* Opens WhatsApp when the number can be read as international,
+                 otherwise stays a normal dial link rather than a dead wa.me one. */
+              href={whatsapp || `tel:${contact.phone.replace(/[^+\d]/g, '')}`}
+              {...(whatsapp ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+            >
               <span className="contact__icon">
                 <Phone />
               </span>

@@ -343,7 +343,20 @@ collections:
             name: phone
             widget: string
             required: false
-            hint: Optional. A phone row appears in the contact list only when filled in.
+            hint: >-
+              Optional. Shown in the contact list exactly as you type it, and
+              clicking it opens a WhatsApp chat. A phone row only appears when
+              this is filled in.
+          - label: Country calling code
+            name: phoneCountryCode
+            widget: string
+            required: false
+            default: "62"
+            hint: >-
+              Only used when the phone number above starts with a single 0, to
+              turn it into an international number for WhatsApp. 62 is Indonesia.
+              Ignored if you write the number with its country code, like
+              +62 821 1234 5678.
           - { label: Location, name: location, widget: string, required: false, hint: 'For example "Jakarta, Indonesia".' }
           - { label: LinkedIn — text to show, name: linkedinLabel, widget: string, required: false }
           - { label: LinkedIn — web address, name: linkedinUrl, widget: string, required: false }
