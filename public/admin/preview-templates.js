@@ -158,8 +158,15 @@
 
   /* ------------------------------------------------------------ site parts */
 
-  function Navbar(name) {
+  // `general` carries the portfolio PDF; the Download item is only drawn once one
+  // is set, exactly as the real header behaves.
+  function Navbar(name, general) {
+    general = general || {}
     var parts = String(name || 'Panji Prakorso').split(' ')
+    var labels = ['Home', 'About', 'Experience', 'Projects']
+    if (String(general.portfolioUrl || '').trim()) {
+      labels = labels.concat(general.portfolioLabel || 'Download')
+    }
     return h(
       'header',
       { className: 'nav is-scrolled', style: { position: 'static' } },
@@ -174,7 +181,7 @@
         h(
           'nav',
           { className: 'nav__links' },
-          ['Home', 'About', 'Experience', 'Projects', 'Contact'].map(function (l, i) {
+          labels.map(function (l, i) {
             return h('span', { key: l, className: 'nav__link' + (i === 0 ? ' is-active' : '') }, l)
           })
         ),
@@ -641,7 +648,7 @@
     return h(
       'div',
       null,
-      Navbar((SNAP.general || {}).siteName),
+      Navbar((SNAP.general || {}).siteName, SNAP.general),
       Hero(props, d.hero, d.stats),
       About(SNAP.about, 'About — edited on the About page'),
       FeaturedProjects(d.projectsSection, d.featuredProjects),
@@ -654,25 +661,25 @@
   }
 
   function AboutPreview(props) {
-    return h('div', null, Navbar((SNAP.general || {}).siteName), About(dataOf(props)), Footer(SNAP.general))
+    return h('div', null, Navbar((SNAP.general || {}).siteName, SNAP.general), About(dataOf(props)), Footer(SNAP.general))
   }
 
   function ExperiencePreview(props) {
-    return h('div', null, Navbar((SNAP.general || {}).siteName), Experience(dataOf(props)), Footer(SNAP.general))
+    return h('div', null, Navbar((SNAP.general || {}).siteName, SNAP.general), Experience(dataOf(props)), Footer(SNAP.general))
   }
 
   function SkillsPreview(props) {
     var d = dataOf(props)
-    return h('div', null, Navbar((SNAP.general || {}).siteName), Framework(d.framework), Tools(d.tools), Footer(SNAP.general))
+    return h('div', null, Navbar((SNAP.general || {}).siteName, SNAP.general), Framework(d.framework), Tools(d.tools), Footer(SNAP.general))
   }
 
   function ContactPreview(props) {
-    return h('div', null, Navbar((SNAP.general || {}).siteName), Contact(dataOf(props)), Footer(SNAP.general, dataOf(props)))
+    return h('div', null, Navbar((SNAP.general || {}).siteName, SNAP.general), Contact(dataOf(props)), Footer(SNAP.general, dataOf(props)))
   }
 
   function GeneralPreview(props) {
     var d = dataOf(props)
-    return h('div', null, Navbar(d.siteName), h('div', { style: { padding: '4rem 0' } }), Footer(d, SNAP.contact))
+    return h('div', null, Navbar(d.siteName, d), h('div', { style: { padding: '4rem 0' } }), Footer(d, SNAP.contact))
   }
 
   function ProjectPreview(props) {
@@ -688,7 +695,7 @@
     return h(
       'article',
       { className: 'case' },
-      Navbar((SNAP.general || {}).siteName),
+      Navbar((SNAP.general || {}).siteName, SNAP.general),
       h(
         'header',
         { className: 'case__hero pv-section' },

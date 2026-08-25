@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { navLinks } from '../content/navigation.js'
+import { headerLinks } from '../content/navigation.js'
 import { site, contactSection as contact } from '../content/index.js'
 import { Menu, Close, Monogram } from './Icons.jsx'
 
@@ -8,6 +8,17 @@ export default function Navbar() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
   const [firstName, ...restName] = (site.name ?? '').split(' ')
+
+  // No PDF configured means no link to render at all, rather than one that 404s.
+  // `download` only saves same-origin files, so a hosted URL just opens instead.
+  const portfolioUrl = site.portfolioUrl?.trim()
+  const portfolioLink = portfolioUrl && {
+    href: portfolioUrl,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    ...(portfolioUrl.startsWith('/') ? { download: true } : {})
+  }
+  const portfolioLabel = site.portfolioLabel || 'Download'
 
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -28,8 +39,8 @@ export default function Navbar() {
         setScrolled(window.scrollY > 24)
         if (!isHome) return
         const line = window.scrollY + window.innerHeight * 0.3
-        let current = navLinks[0].id
-        for (const link of navLinks) {
+        let current = headerLinks[0].id
+        for (const link of headerLinks) {
           const el = document.getElementById(link.id)
           if (el && el.offsetTop <= line) current = link.id
         }
@@ -67,7 +78,7 @@ export default function Navbar() {
           </Link>
 
           <nav className="nav__links" aria-label="Primary">
-            {navLinks.map((link) => {
+            {headerLinks.map((link) => {
               const isActive = isHome && active === link.id
               const className = `nav__link ${isActive ? 'is-active' : ''}`
               return isHome ? (
@@ -80,6 +91,11 @@ export default function Navbar() {
                 </Link>
               )
             })}
+            {portfolioLink && (
+              <a className="nav__link" {...portfolioLink}>
+                {portfolioLabel}
+              </a>
+            )}
           </nav>
 
           <div className="nav__actions">
@@ -102,7 +118,7 @@ export default function Navbar() {
 
       <div id="mobile-menu" className={`mobile-menu ${open ? 'is-open' : ''}`} hidden={!open}>
         <nav className="mobile-menu__links" aria-label="Mobile">
-          {navLinks.map((link, i) =>
+          {headerLinks.map((link, i) =>
             isHome ? (
               <a
                 key={link.id}
@@ -124,6 +140,16 @@ export default function Navbar() {
                 {link.label}
               </Link>
             )
+          )}
+          {portfolioLink && (
+            <a
+              {...portfolioLink}
+              onClick={closeMenu}
+              style={{ transitionDelay: `${60 + headerLinks.length * 45}ms` }}
+            >
+              <span className="mobile-menu__index">0{headerLinks.length + 1}</span>
+              {portfolioLabel}
+            </a>
           )}
         </nav>
         <div className="mobile-menu__foot">
