@@ -812,14 +812,25 @@
   align-items: center;
 }
 
+/*
+  Wrapping row rather than a fixed grid.
+
+  A grid with a set column count leaves the last row short whenever the number
+  of metrics is not a multiple of it — five cards in two columns end on a hole.
+  Here the cards on the final row simply grow into the space instead, so the
+  last row always finishes flush whatever the count. --metric-basis is what
+  decides how many fit per row; the breakpoints below set it.
+*/
 .impact__grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   background: var(--line);
 }
 
 .metric {
+  flex: 1 1 var(--metric-basis, 0);
+  min-width: 0;
   padding: clamp(1rem, 1.8vw, 1.5rem) clamp(0.75rem, 1.5vw, 1.25rem);
   background: var(--bg);
   text-align: center;
@@ -872,14 +883,16 @@
   .impact__inner {
     grid-template-columns: 1fr;
   }
+  /* Three per row; the leftovers share the last row between them. */
   .impact__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    --metric-basis: 30%;
   }
 }
 
 @media (max-width: 560px) {
+  /* Two per row; a lone last card spans the full width. */
   .impact__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --metric-basis: 45%;
   }
   .impact__note {
     text-align: left;

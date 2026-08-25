@@ -181,6 +181,8 @@ rename a project or change its web address. **Position in the project list** set
 running order (1 first); projects sharing a number fall back to alphabetical order.
 
 The downloadable PDF shows the same set, so switching a project off removes it from both.
+A featured project also gets its own case-study pages in the PDF, built from its
+chapters, impact figures and key learning.
 
 ### Images
 
