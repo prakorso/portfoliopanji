@@ -169,12 +169,18 @@ publishing is the save.
 
 ### Choosing which projects appear on the homepage
 
-**Homepage → Featured projects** is the list that drives the carousel, in that order.
-Drag to reorder, remove one to hide it. A project you remove stays published at its own
-`/projects/…` address — it just isn't in the carousel.
+Each project decides for itself. Open the project and set **Featured on Homepage**:
 
-*(If that list is ever emptied, the carousel falls back to showing every project rather
-than going blank.)*
+| Toggle | Result |
+| --- | --- |
+| ON | the project is in the homepage carousel |
+| OFF | it is not — but its own `/projects/…` page still works |
+
+There is no list on the Homepage page to keep in step, and nothing to update when you
+rename a project or change its web address. **Position in the project list** sets the
+running order (1 first); projects sharing a number fall back to alphabetical order.
+
+The downloadable PDF shows the same set, so switching a project off removes it from both.
 
 ### Images
 

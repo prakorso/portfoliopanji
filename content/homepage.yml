@@ -30,10 +30,6 @@ projectsSection:
   label: Featured Projects
   title: Selected Work
   lead: Three businesses. Three different challenges. One marketing mindset.
-featuredProjects:
-  - 99-group
-  - perkasa-motors
-  - axioo-pongo
 impact:
   label: Selected Historical Impact
   title: Impact That Matters

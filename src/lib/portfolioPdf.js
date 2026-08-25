@@ -23,7 +23,7 @@ import {
   disciplines,
   experienceSection,
   milestones,
-  projects,
+  featuredProjects,
   projectsSection,
   framework,
   frameworkSteps,
@@ -639,7 +639,9 @@ async function projectPages(sheet, origin) {
   sheet.newPage()
   sheet.heading(projectsSection.label, projectsSection.title, '', projectsSection.lead)
 
-  for (const project of asList(projects)) {
+  // The same set the homepage carousel shows: this section is headed "Featured
+  // Projects", so a project switched off should not appear here either.
+  for (const project of asList(featuredProjects)) {
     // Real imagery only: heroImage/logo come from the CMS. The site's decorative
     // SVG placeholders carry no information a PDF reader needs.
     const image = await loadImage(project.heroImage || project.logo, 520)

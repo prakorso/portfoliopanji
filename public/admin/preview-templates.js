@@ -420,17 +420,13 @@
     )
   }
 
-  function FeaturedProjects(heading, slugs) {
+  // Mirrors src/content/index.js: each project's own "Featured on Homepage"
+  // toggle decides, so the preview shows the same carousel the site will.
+  function FeaturedProjects(heading) {
     heading = heading || {}
-    var all = SNAP.projects || []
-    var chosen = list(slugs)
-      .map(function (slug) {
-        return all.filter(function (p) {
-          return p.slug === slug
-        })[0]
-      })
-      .filter(Boolean)
-    if (!chosen.length) chosen = all
+    var chosen = (SNAP.projects || []).filter(function (p) {
+      return p.featured !== false && p.featured !== 'false'
+    })
     return h(
       'section',
       { className: 'section projects pv-section' },
@@ -645,7 +641,7 @@
       Navbar((SNAP.general || {}).siteName),
       Hero(props, d.hero, d.stats),
       About(SNAP.about, 'About — edited on the About page'),
-      FeaturedProjects(d.projectsSection, d.featuredProjects),
+      FeaturedProjects(d.projectsSection),
       Impact(d.impact),
       Framework((SNAP.skills || {}).framework, 'How I think — edited on the Skills page'),
       Tools((SNAP.skills || {}).tools, 'Tools — edited on the Skills page'),

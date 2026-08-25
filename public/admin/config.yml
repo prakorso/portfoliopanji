@@ -126,25 +126,7 @@ collections:
               - { label: Section heading, name: title, widget: string, hint: 'Currently "Selected Work".' }
               - { label: Sentence under the heading, name: lead, widget: text }
 
-          - label: "④ Projects shown on the homepage"
-            name: featuredProjects
-            widget: list
-            collapsed: false
-            label_singular: Project
-            hint: >-
-              Choose which projects appear in the homepage carousel, and drag to
-              set their order. Removing one here keeps its own page working — it
-              just hides it from the homepage.
-            field:
-              label: Project
-              name: project
-              widget: relation
-              collection: projects
-              search_fields: [title]
-              display_fields: [title]
-              value_field: "{{slug}}"
-
-          - label: "⑤ Impact"
+          - label: "④ Impact"
             name: impact
             widget: object
             collapsed: false
@@ -454,12 +436,17 @@ collections:
         widget: number
         value_type: int
         default: 1
-        hint: 1 appears first.
-      - label: Featured
+        hint: >-
+          1 appears first. This sets the running order of the homepage carousel
+          too. Projects sharing a number fall back to alphabetical order.
+      - label: Featured on Homepage
         name: featured
         widget: boolean
         default: true
-        hint: Also add the project to Homepage → "Projects shown on the homepage" for it to appear in the carousel.
+        hint: >-
+          ON puts this project in the homepage carousel, OFF takes it out. That
+          is the whole control — nothing needs changing on the Homepage page.
+          Either way the project keeps its own page at its web address.
       - label: Main project image
         name: heroImage
         widget: image
