@@ -1,59 +1,73 @@
 tools:
-  label: "Tools & Technologies"
-  title: "What I work with"
+  label: Tools & Technologies
+  title: The marketing stack behind the work.
   groups:
-    - group: "Performance & Analytics"
+    - group: Paid Media
       tools:
-        - "Google Ads"
-        - "Meta Ads"
-        - "Google Analytics"
-        - "Looker Studio"
-        - "SEO"
-    - group: "Technical"
+        - Google Ads
+        - Meta Ads
+        - Tiktok Ads
+        - Programmatic
+        - Display
+    - group: ANALYTICS & MEASUREMENT
       tools:
-        - "HTML / CSS"
-        - "JavaScript"
-        - "Python"
-        - "SQL"
-    - group: "Workflow"
+        - Google Analytics
+        - Looker Studio
+        - Marketing Analytics
+        - Performance Reporting
+    - group: Marketing & Growth
       tools:
-        - "Airtable"
-        - "Figma"
-        - "WordPress"
+        - Customer Acquisition
+        - Growth Strategy
+        - Marketing Governence
+        - Budget & ROI Management
+        - Performance Optimization
+    - group: Digital Ecosystem
+      tools:
+        - Website
+        - SEO
+        - Social Media
+        - KOL / Creator
 framework:
-  label: "How I think"
-  title: "A four-step way of working,"
-  titleAccent: "applied to every brief."
-  lead: "Strategy before channel, execution before opinion, data before the next budget. The same loop runs whether the goal is brand, acquisition or efficiency."
+  label: How I think
+  title: "A business-first approach to building "
+  titleAccent: marketing that compounds.
+  lead: Connecting brand, digital, performance and growth around clear business
+    objectives — with customer understanding shaping the strategy and data
+    guiding what comes next.
   steps:
     - number: "01"
-      title: "Understand"
-      caption: "Start with the business, not the channel."
+      title: Understand
+      caption: Start with the business, customer and market before defining the
+        marketing problem.
       points:
-        - "Business"
-        - "Customer"
-        - "Market"
+        - Business Objectives
+        - Customer & Market
+        - Commercial Context
     - number: "02"
-      title: "Strategize"
-      caption: "Decide where to play before deciding how to spend."
+      title: Strategize
+      caption: Translate business objectives into a clear marketing strategy, from
+        positioning and audience to channel and funnel.
       points:
-        - "Positioning"
-        - "Audience"
-        - "Channel"
-        - "Funnel"
+        - Positioning
+        - Audience
+        - Channel Strategy
+        - Funnel
     - number: "03"
-      title: "Execute"
-      caption: "Ship the work — consistently, across the whole funnel."
+      title: ORCHESTRATE
+      caption: Bring people, channels and capabilities together to turn strategy into
+        coordinated market execution.
       points:
-        - "Campaign"
-        - "Content"
-        - "Digital"
-        - "Performance"
+        - Cross Functional Teams
+        - Integrated Campaigns
+        - Digital & Performance
+        - Stakeholders
     - number: "04"
-      title: "Optimize"
-      caption: "Let the data decide what earns the next budget."
+      title: MEASURE & SCALE
+      caption: Turn performance data into decisions that improve efficiency, prove
+        impact and guide the next investment.
       points:
-        - "Data"
-        - "Testing"
-        - "Efficiency"
-        - "Growth"
+        - Measurement
+        - Efficiency
+        - ROI
+        - Growth
