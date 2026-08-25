@@ -1,81 +1,114 @@
-title: "Perkasa Motors"
-slug: "perkasa-motors"
-displayTitle: "PERKASA MOTORS"
-number: "02"
-category: "Business Building / Marketing / Automotive"
-categoryShort: "Business / Marketing"
+title: Perkasa Motors
+slug: perkasa-motors
+displayTitle: PERKASA MOTORS
+number: "03"
+category: Business Building / Marketing / Automotive
+categoryShort: Business / Marketing
 year: ""
-order: 2
+order: 3
 featured: true
-heroImage: ""
-logo: ""
-visual: "automotive"
+heroImage: /uploads/projects/save_20260502_125422.jpg
+logo: /uploads/projects/save_20260502_125422.jpg
+visual: automotive
 tags:
-  - "Business Building"
-  - "Brand"
-  - "Digital Ecosystem"
-  - "Marketing"
-shortDescription: "Building a modern automotive business and digital ecosystem from the ground up."
-heroDescription: "An entrepreneurial marketing project: designing the brand, the business model and the digital ecosystem of an automotive business from a blank page."
+  - Business Building
+  - Brand Strategy
+  - Digital Ecosystem
+  - Customer Acquisition
+shortDescription: Building a modern automotive business and digital ecosystem from the ground up.
+heroDescription: Building an automotive business from the ground up, connecting
+  business strategy, brand positioning, digital infrastructure and customer
+  acquisition into one operating system.
 cardMetrics: []
 chapters:
-  - label: "Business Context"
-    title: "Starting an automotive business from zero"
+  - label: Business Context
+    title: Building the commercial foundation before scaling the business.
     body:
-      - "Perkasa Motors is a used-car business built from the ground up — not a marketing brief handed over by a client, but a company where positioning, operations and demand generation had to be designed together."
-      - "That makes it the clearest test of marketing thinking I have: no existing brand equity, no inherited traffic, no legacy funnel. Every decision had to earn its place commercially."
+      - Perkasa Motors was built from the ground up as a modern automotive
+        business, requiring more than a sales channel. The challenge was to
+        establish a clear business model, credible brand and digital foundation
+        that could support sustainable growth.
+      - "With no inherited brand equity, customer base or established marketing
+        infrastructure, every decision had to connect back to the fundamentals:
+        who we serve, what we offer, how we create demand and how that demand
+        converts into business value."
     bullets: []
     columns: []
-  - label: "Brand"
-    title: "A trust-first identity in a low-trust category"
+  - label: Brand
+    title: Building trust before asking customers to buy.
     body:
-      - "Used-car buying is a high-consideration, trust-sensitive purchase. The brand was built to answer that directly: clear presentation, honest vehicle information and a consistent identity across every surface a buyer touches."
+      - Automotive is a high-consideration category where customers evaluate
+        more than price. The brand therefore needed to communicate credibility,
+        transparency and confidence across every customer touchpoint.
     bullets:
-      - "Positioning built around transparency and buyer confidence"
-      - "Consistent visual identity across digital and physical touchpoints"
-      - "Vehicle presentation standards treated as brand, not admin"
-      - "Tone of voice that informs rather than pressures"
+      - Clear positioning around trust, transparency and value
+      - Consistent brand expression across digital touchpoints
+      - Communication designed to reduce uncertainty before inquiry
+      - Customer experience treated as part of the brand
     columns: []
-  - label: "Business Model"
-    title: "Marketing decisions tied to unit economics"
+  - label: Business Model
+    title: Marketing decisions grounded in business economics.
     body:
-      - "Inventory, pricing and demand generation are one system. Marketing here is not a layer on top of the business — it sets which vehicles get sourced, how they are priced and how quickly they need to move."
+      - In automotive, marketing cannot be evaluated in isolation. Inventory,
+        acquisition cost, pricing, margin and sales velocity all influence
+        whether growth actually creates value.
     bullets:
-      - "Inventory selection informed by observed demand signals"
-      - "Pricing and presentation aligned to buyer expectations"
-      - "Enquiry handling designed as part of the funnel, not after it"
-      - "Marketing effort weighted toward stock that needs velocity"
+      - Inventory selection aligned with customer demand
+      - Pricing and positioning considered alongside acquisition efficiency
+      - Marketing investment evaluated against potential business return
+      - Customer acquisition connected to inventory movement and sales outcomes
     columns: []
-  - label: "Digital Ecosystem"
-    title: "Owned platform first, channels second"
+  - label: Digital Ecosystem
+    title: Building the digital foundation before scaling acquisition.
     body:
-      - "The digital ecosystem was built so the business owns its shopfront rather than renting attention entirely from marketplaces and social platforms."
+      - The digital ecosystem was designed as an owned foundation for the
+        business — connecting brand presence, inventory discovery, content, lead
+        generation and customer data rather than treating each channel as a
+        standalone activity.
     bullets:
-      - "Website as the canonical inventory and brand destination"
-      - "Structured listing pages built for search discoverability"
-      - "Direct enquiry routes into conversation, not into a form void"
-      - "Social profiles positioned as top-of-funnel discovery"
-      - "Analytics and tracking in place from day one"
+      - Website as the central inventory and brand destination
+      - Digital presence designed around customer intent and discovery
+      - Content and social channels supporting awareness and consideration
+      - Analytics and lead flows connecting activity to commercial outcomes
     columns: []
-  - label: "Marketing"
-    title: "Full-funnel execution at small-business scale"
+  - label: Marketing
+    title: Building a full-funnel marketing system around customer intent.
     body:
-      - "With a founder-scale budget, the marketing model prioritises compounding assets — content, listings and search presence — supported by targeted paid activity rather than the reverse."
-    bullets:
-      - "Content and vehicle storytelling as the primary demand asset"
-      - "Search and marketplace visibility for high-intent buyers"
-      - "Social content for reach, credibility and remarketing pools"
-      - "Paid media used selectively against specific inventory goals"
-    columns: []
+      - With a focused marketing budget, every channel needs a defined role. The
+        approach connects awareness, consideration and conversion rather than
+        treating campaigns as isolated activities.
+    bullets: []
+    columns:
+      - title: Awareness
+        items:
+          - Brand storytelling and market education
+          - Content designed to build familiarity and trust
+      - title: Consideration
+        items:
+          - Inventory-led content and product discovery
+          - Retargeting and intent-based communication
+      - items:
+          - High-intent lead generation
+          - Landing experience and response flow aligned with sales
+        title: Conversion
 impact:
-  label: "Current Progress"
-  attribution: "Perkasa Motors — ongoing"
-  note: "Perkasa Motors is an active, early-stage business. No performance metrics are published here, because none have been independently verified yet. The evidence below is qualitative and deliberately kept that way."
+  label: Current Position
+  attribution: Perkasa Motors — ongoing
+  note: An ongoing entrepreneurial business project where marketing, digital
+    infrastructure and commercial decisions are developed together. The work
+    continues to evolve as the business grows and new operational data becomes
+    available.
   items: []
   qualitative:
-    - "Brand identity, positioning and presentation standards defined and in use"
-    - "Owned website and inventory experience live as the primary digital asset"
-    - "Digital ecosystem — website, listings, social and analytics — operating together"
-    - "Marketing model running end to end, from discovery through to enquiry handling"
-    - "Ongoing build: results will be reported once measured over a meaningful period"
-learning: "Owning the business changes how you weigh marketing decisions. When the cost of a bad channel choice is your own inventory sitting still, you stop optimising for activity and start optimising for what actually moves stock."
+    - Brand identity and positioning established A defined market proposition
+      and communication direction for the business.
+    - Owned website and inventory experience established A digital destination
+      designed around product discovery and customer intent.
+    - Digital ecosystem connected Website, content, social and analytics
+      structured as one customer journey.
+    - Marketing model defined end-to-end From awareness and discovery through
+      lead generation and customer handling.
+    - Business and marketing systems continue to evolve The foundation is
+      designed to support future scale as inventory, demand and operations grow.
+learning: The closer marketing gets to the business, the more every decision has
+  to earn its place.
