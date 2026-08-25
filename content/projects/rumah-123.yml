@@ -6,6 +6,7 @@ category: Performance Marketing / Growth / Leadership
 order: 1
 featured: true
 heroImage: /uploads/projects/2.png
+heroTreatment: logo
 logo: /uploads/projects/2.png
 visual: dashboard
 tags:
@@ -38,7 +39,7 @@ chapters:
       - This required connecting performance marketing with Sales, Creative,
         CRM, Product and Business stakeholders — creating stronger alignment
         between campaign decisions and the commercial funnel.
-  - label: ACQUISITION STRATEGY
+  - label: Acquisition Strategy
     title: From campaign optimization to acquisition strategy.
     body:
       - Performance marketing was managed as an acquisition system rather than a

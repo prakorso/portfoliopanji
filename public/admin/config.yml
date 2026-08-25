@@ -454,6 +454,17 @@ collections:
         hint: >-
           Optional. Replaces the built-in graphic on both the project card and
           the case study page. Use JPG or PNG.
+      - label: How that image should be shown
+        name: heroTreatment
+        widget: select
+        default: photo
+        hint: >-
+          A photograph fills the frame. A logo is usually drawn for a white
+          background, so it is placed on a light plaque instead of being
+          stretched across the dark panel.
+        options:
+          - { label: "Photograph — fills the frame", value: photo }
+          - { label: "Logo — sits on a light plaque", value: logo }
       - label: Project logo
         name: logo
         widget: image

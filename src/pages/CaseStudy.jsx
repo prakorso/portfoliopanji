@@ -17,6 +17,7 @@ export default function CaseStudy() {
   if (!project) return <Navigate to="/404" replace />
 
   const related = getRelatedProjects(slug)
+  const isLogo = project.heroTreatment === 'logo'
   const impact = project.impact ?? {}
   const impactItems = impact.items ?? []
   const hasNumbers = impactItems.length > 0
@@ -48,9 +49,25 @@ export default function CaseStudy() {
               </ul>
             </div>
 
-            <div className="case__hero-visual">
+            {/*
+              A logo is drawn for a white background and carries its own wide
+              margins, so filling the dark panel with it leaves a pale, mostly
+              empty square. Given the logo treatment it sits on a light plaque
+              instead — contained, never cropped, never recoloured.
+            */}
+            <div
+              className={`case__hero-visual ${
+                isLogo ? 'case__hero-visual--logo' : ''
+              }`}
+            >
               {project.heroImage ? (
-                <img className="case__hero-image" src={project.heroImage} alt="" />
+                isLogo ? (
+                  <span className="case__logo-plate">
+                    <img className="case__logo" src={project.heroImage} alt="" />
+                  </span>
+                ) : (
+                  <img className="case__hero-image" src={project.heroImage} alt="" />
+                )
               ) : (
                 <ProjectVisual variant={project.visual} />
               )}

@@ -67,6 +67,10 @@ const SUBSTITUTES = {
 const WINANSI =
   /[^\u0020-\u007e\u00a1-\u00ff\u20ac\u201a\u0192\u201e\u2026\u2020\u2021\u02c6\u2030\u0160\u2039\u0152\u017d\u2018\u2019\u201c\u201d\u2022\u2013\u2014\u02dc\u2122\u0161\u203a\u0153\u017e\u0178]/g
 
+/** The logo plaque's window, matching .case__logo-plate on the site. */
+const LOGO_ASPECT = 16 / 7
+const isLogo = (project) => project.heroTreatment === 'logo'
+
 const clean = (v) =>
   v == null ? '' : String(v).replace(WINANSI, (ch) => SUBSTITUTES[ch] ?? '').trim()
 
@@ -85,7 +89,7 @@ const asList = (v) => (Array.isArray(v) ? v.filter(Boolean) : [])
  * choice for a cut-out photo that sits on a known panel, and far smaller than
  * keeping the alpha channel.
  */
-async function loadImage(src, targetPx = 640, flattenOn = '') {
+async function loadImage(src, targetPx = 640, flattenOn = '', cropAspect = 0) {
   if (!clean(src)) return null
   try {
     const res = await fetch(src)
@@ -109,21 +113,39 @@ async function loadImage(src, targetPx = 640, flattenOn = '') {
     const w = img.naturalWidth || 600
     const h = img.naturalHeight || 600
 
-    const scale = Math.min(1.5, targetPx / Math.max(w, h))
+    // A centred crop to `cropAspect`, the same window the site's logo plaque
+    // shows. For a wordmark centred in a square canvas this trims the file's
+    // own blank margin and nothing else; the aspect ratio is untouched, so the
+    // logo is never stretched.
+    let sx = 0
+    let sy = 0
+    let sw = w
+    let sh = h
+    if (cropAspect > 0) {
+      if (w / h > cropAspect) {
+        sw = h * cropAspect
+        sx = (w - sw) / 2
+      } else {
+        sh = w / cropAspect
+        sy = (h - sh) / 2
+      }
+    }
+
+    const scale = Math.min(1.5, targetPx / Math.max(sw, sh))
     const canvas = document.createElement('canvas')
-    canvas.width = Math.max(1, Math.round(w * scale))
-    canvas.height = Math.max(1, Math.round(h * scale))
+    canvas.width = Math.max(1, Math.round(sw * scale))
+    canvas.height = Math.max(1, Math.round(sh * scale))
     const ctx = canvas.getContext('2d')
     ctx.imageSmoothingQuality = 'high'
     if (flattenOn) {
       ctx.fillStyle = flattenOn
       ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height)
 
     return flattenOn
-      ? { data: canvas.toDataURL('image/jpeg', 0.86), w, h, format: 'JPEG' }
-      : { data: canvas.toDataURL('image/png'), w, h, format: 'PNG' }
+      ? { data: canvas.toDataURL('image/jpeg', 0.86), w: sw, h: sh, format: 'JPEG' }
+      : { data: canvas.toDataURL('image/png'), w: sw, h: sh, format: 'PNG' }
   } catch {
     return null
   }
@@ -766,9 +788,13 @@ async function projectPages(sheet, origin) {
   // pages later, so here a logo is only a small mark beside the title. That keeps
   // all three on one page, which is what makes this read as a contents page.
   for (const project of asList(featuredProjects)) {
-    const mark = await loadImage(project.logo || project.heroImage, 240)
+    // Cropped for a logo so the mark reads at this size instead of sitting in
+    // its own margin, exactly as the case-study plaque does.
+    const mark = await loadImage(
+      project.logo || project.heroImage, 240, '', isLogo(project) ? LOGO_ASPECT : 0
+    )
     const markH = mark ? 38 : 0
-    const markW = mark ? Math.min(96, (markH * mark.w) / mark.h) : 0
+    const markW = mark ? Math.min(100, (markH * mark.w) / mark.h) : 0
 
     const tags = asList(project.tags).map(clean).filter(Boolean)
     const metrics = asList(project.cardMetrics)
@@ -923,14 +949,26 @@ async function caseStudyPages(sheet, origin) {
       after: 8
     })
 
-    const cover = await loadImage(project.heroImage || project.logo, 620)
+    const logo = isLogo(project)
+    const cover = await loadImage(
+      project.heroImage || project.logo, 620, '', logo ? LOGO_ASPECT : 0
+    )
     if (cover) {
       // Deliberately modest: the imagery is a mark of identity here, not the
       // subject. A taller one pushes a chapter onto a third page for no gain.
-      const h = Math.min(120, (CONTENT_W * cover.h) / cover.w)
+      const h = Math.min(logo ? 132 : 120, (CONTENT_W * cover.h) / cover.w)
       const w = Math.min(CONTENT_W, (h * cover.w) / cover.h)
       keepTogether(sheet, h + 12)
-      sheet.doc.addImage(cover.data, cover.format, MARGIN.x, sheet.y, w, h, undefined, 'FAST')
+      if (logo) {
+        // The light plaque the site gives a logo, so the two match. Pure white,
+        // not the off-white text token: the artwork's own ground is #fff, and
+        // any other shade shows as a seam where the plate meets the image.
+        sheet.doc.setFillColor('#ffffff')
+        sheet.doc.roundedRect(MARGIN.x, sheet.y, CONTENT_W, h, 8, 8, 'F')
+      }
+      sheet.doc.addImage(
+        cover.data, cover.format, MARGIN.x + (CONTENT_W - w) / 2, sheet.y, w, h, undefined, 'FAST'
+      )
       sheet.y += h + 12
     }
 

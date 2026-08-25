@@ -2122,6 +2122,48 @@
   border-radius: var(--radius);
 }
 
+/*
+  Logo treatment for the case-study hero.
+
+  Brand logos are drawn for white and ship with wide margins of their own, so
+  stretching one across the dark panel gives a large pale square with a small
+  mark adrift in it. The plaque gives the logo the light ground it expects,
+  at a proportion that suits a horizontal wordmark — the artwork itself is
+  untouched: contained, never cropped, never recoloured.
+*/
+.case__hero-visual--logo {
+  display: grid;
+  place-items: center;
+}
+
+.case__logo-plate {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  /* Pure white, matching the ground these logo files are drawn on, so a plaque
+     and its artwork read as one surface. */
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(4, 12, 22, 0.06);
+}
+
+/*
+  `cover` here trims only the logo file's own blank margin, never the mark:
+  these files centre a wide wordmark in a square canvas, so a 16/7 window keeps
+  the middle 44% of the height while the mark occupies about 30% of it. The
+  aspect ratio is preserved, so nothing is stretched — the mark simply reads at
+  a sensible size instead of floating in its own whitespace. A project whose
+  artwork does not suit this leaves the treatment set to Photograph.
+*/
+.case__logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .project-card__logo {
   position: absolute;
   top: 0.85rem;
