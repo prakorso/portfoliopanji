@@ -15,7 +15,13 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # typecheck + production build into dist/
 npm run preview  # serve the production build
+
+npm run build:single   # flatten the build into a self-contained preview.html
 ```
+
+`build:single` inlines the CSS, JS and Latin font subsets into one file that
+opens straight from disk and makes no network requests — useful for sharing the
+prototype without hosting it.
 
 Stack: React 18 + TypeScript + Vite 6 + Tailwind CSS 4 + lucide-react.
 Fonts (Inter Tight / Inter / IBM Plex Mono) are self-hosted via Fontsource, so

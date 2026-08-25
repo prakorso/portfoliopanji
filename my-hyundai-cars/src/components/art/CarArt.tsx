@@ -48,6 +48,9 @@ export default function CarArt({
     <svg
       viewBox={`0 0 ${CAR_VIEWBOX.w} ${CAR_VIEWBOX.h}`}
       className={className}
+      // The headlight beam reaches past the viewBox on purpose; the containing
+      // section clips it, so it fades into the scene instead of ending on an edge.
+      style={headlightGlow ? { overflow: 'visible' } : undefined}
       role={decorative ? 'presentation' : 'img'}
       aria-label={decorative ? undefined : title}
       aria-hidden={decorative || undefined}
