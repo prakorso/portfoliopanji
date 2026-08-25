@@ -1,0 +1,144 @@
+title: Rumah 123
+slug: rumah-123
+displayTitle: Rumah 123
+number: "01"
+category: Performance Marketing / Growth / Leadership
+order: 1
+featured: true
+heroImage: /uploads/projects/2.png
+logo: /uploads/projects/2.png
+visual: dashboard
+tags:
+  - Performance Marketing
+  - Customer Acquistiion
+  - Lead Quality
+  - People Leadership
+shortDescription: Leading performance marketing across high-volume digital
+  funnels, connecting acquisition strategy, lead quality, team performance and
+  marketing governance to measurable business growth.
+heroDescription: Leading performance marketing across high-volume digital
+  funnels, connecting acquisition strategy, lead quality, team performance and
+  marketing governance to measurable business growth.
+cardMetrics:
+  - value: 35%
+    label: Lead Quality Improvement
+  - value: 30%
+    label: Spam Rate Reduction
+  - value: 20%
+    label: Qualified Lead Conversion
+chapters:
+  - label: Business Context
+    title: Scaling acquisition means managing more than media performance.
+    body:
+      - In a high-volume property marketplace, marketing performance is closely
+        connected to lead quality, sales handling and the ability to scale
+        acquisition efficiently. The challenge was not simply generating more
+        leads, but building an acquisition system that consistently produced
+        better business outcomes.
+      - This required connecting performance marketing with Sales, Creative,
+        CRM, Product and Business stakeholders — creating stronger alignment
+        between campaign decisions and the commercial funnel.
+  - label: ACQUISITION STRATEGY
+    title: From campaign optimization to acquisition strategy.
+    body:
+      - Performance marketing was managed as an acquisition system rather than a
+        collection of individual campaigns. Budget allocation, audience
+        segmentation, channel performance and funnel quality were continuously
+        evaluated against business objectives.
+    bullets:
+      - Multi-channel acquisition strategy
+      - Data-driven budget allocation
+      - Audience segmentation and targeting
+      - Funnel and lead-quality optimization
+    columns:
+      - items:
+          - 15 -25%
+        title: CPL Efficiency Improvement
+  - label: Lead Quality
+    title: Growth only matters when the leads become more valuable.
+    body:
+      - As acquisition scaled, lead volume alone was not enough. The focus
+        shifted toward improving the quality of demand entering the funnel and
+        creating stronger controls between targeting, campaign execution and
+        downstream conversion.
+    bullets:
+      - Structured targeting frameworks
+      - Lead-quality control systems
+      - Audience refinement
+      - Closer alignment with Sales and Fulfillment
+    columns:
+      - title: Spam Rate Reduction
+        items:
+          - 30%
+      - title: Qualified Lead Conversion
+        items:
+          - 20%
+  - label: Marketing Governance
+    title: Creating a system that makes performance easier to manage at scale.
+    body:
+      - As the scope expanded, performance management needed to become more
+        structured. Reporting frameworks, monitoring routines and standardized
+        optimization processes were introduced to improve visibility,
+        consistency and decision-making across campaigns.
+    bullets:
+      - Standardized optimization processes
+      - Performance monitoring framework
+      - Executive-level reporting
+      - Scalable campaign management
+    columns:
+      - title: Operational Efficiency
+        items:
+          - 25%
+      - title: Reporting Visibility
+        items:
+          - 30%
+  - label: People & Leadership
+    title: Scaling performance through people, not just processes.
+    body:
+      - The role evolved from managing campaign performance to developing the
+        people and operating rhythm behind it. Leading a team of Performance
+        Marketing Specialists required balancing execution, coaching,
+        performance reviews and continuous development.
+    bullets:
+      - 1-on-1 coaching
+      - Performance reviews
+      - Team development
+      - Execution quality
+      - Cross-functional collaboration
+    columns:
+      - title: Performance Marketing Specialist
+        items:
+          - "5"
+impact:
+  label: Measured Impact
+  items:
+    - value: 35%
+      label: Lead Quality Improvement
+    - label: Spam Rate Reduction
+      value: 30%
+    - value: 20%
+      label: CPL Efficiency Improvement
+    - value: 20%
+      label: Qualified Lead Conversion Improvement
+    - label: Operational Efficiency Improvement
+      value: 25%
+    - label: Reporting Visibility Improvement
+      value: 30%
+  attribution: RUMAH 123
+  qualitative:
+    - Acquisition strategy Performance marketing aligned with broader business
+      objectives.
+    - Lead quality Stronger targeting and quality-control systems across the
+      funnel.
+    - Operational governance Structured reporting and optimization processes for
+      scalable execution.
+    - People leadership Managing and developing a team of 6 Performance
+      Marketing Specialists.
+    - Cross-functional alignment Connecting Performance, Sales, Creative, CRM,
+      Product and Business stakeholders.
+  note: Selected results achieved during my tenure in Performance Marketing,
+    reflecting improvements across acquisition, lead quality, operational
+    efficiency, and marketing governance.
+learning: The next level of performance is not finding another 10% in a
+  campaign. It is building the people, processes and decisions that make better
+  performance repeatable.
