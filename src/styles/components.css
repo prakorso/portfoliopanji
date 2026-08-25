@@ -1943,6 +1943,211 @@
   color: var(--text-dim);
 }
 
+/* ---------- Selected media (optional) ---------- */
+
+/*
+  Uses the case study's own section/shell wrapper, so the grid inherits the same
+  content edges as Measured Impact and Key Learning rather than setting its own.
+*/
+.case__media .section-title {
+  max-width: 34ch;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.media-card__frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-alt);
+  cursor: default;
+  color: inherit;
+  font: inherit;
+}
+
+button.media-card__frame,
+a.media-card__frame {
+  cursor: pointer;
+}
+
+/* The picture keeps its own proportions inside a fixed window, so a tall
+   screenshot and a wide dashboard still produce an even grid. */
+.media-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+}
+
+a.media-card__frame:hover .media-card__image,
+button.media-card__frame:hover .media-card__image {
+  transform: scale(1.03);
+}
+
+/* Stand-in for a video with no thumbnail — the design system's own surface
+   rather than a foreign grey box. */
+.media-card__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  color: var(--accent-soft);
+  background: radial-gradient(120% 100% at 30% 0%, rgba(37, 99, 235, 0.22), rgba(4, 12, 22, 0.9));
+}
+
+.media-card__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.media-card__play svg {
+  padding: 0.85rem;
+  border-radius: 50%;
+  color: var(--white);
+  background: rgba(4, 12, 22, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(248, 250, 252, 0.35);
+  box-sizing: content-box;
+}
+
+.media-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+.media-card__platform {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.media-card__title {
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.media-card__desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.media-card__cta {
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  color: var(--accent-soft);
+}
+
+.media-card__cta:hover {
+  color: var(--white);
+}
+
+/* ---------- Related materials ---------- */
+
+.media-links {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.media-links__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem clamp(1.25rem, 3vw, 2.25rem);
+  margin-top: 1rem;
+}
+
+.media-links__link {
+  font-size: 0.72rem;
+  color: var(--accent-soft);
+}
+
+.media-links__link:hover {
+  color: var(--white);
+  gap: 0.85rem;
+}
+
+/* ---------- Enlarged image ---------- */
+
+.media-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: clamp(1.25rem, 5vw, 3rem);
+  background: rgba(4, 12, 22, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+.media-zoom__image {
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.media-zoom__caption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.media-zoom__close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  display: grid;
+  place-items: center;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text);
+  background: var(--surface-solid);
+  cursor: pointer;
+}
+
+.media-zoom__close:hover {
+  border-color: var(--line-strong);
+}
+
+@media (max-width: 700px) {
+  .media-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---------- Learning ---------- */
 
 .case__learning-inner {

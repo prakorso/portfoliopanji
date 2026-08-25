@@ -105,6 +105,11 @@
     return Array.isArray(v) ? v : []
   }
 
+  /** A trimmed plain string — `text` returns a placeholder element instead. */
+  function str(value) {
+    return value === undefined || value === null ? '' : String(value).trim()
+  }
+
   function text(value, fallback) {
     if (value === undefined || value === null || value === '') {
       return h('span', { className: 'pv-empty' }, fallback || '—')
@@ -672,6 +677,103 @@
     return h('div', null, Navbar(d.siteName), h('div', { style: { padding: '4rem 0' } }), Footer(d, SNAP.contact))
   }
 
+
+  /*
+    Selected media, mirroring src/components/SelectedMedia.jsx: the same rules
+    about what counts as a video and what is worth a card, so the preview shows
+    what the page will. Freshly picked files come through `asset` like every
+    other image in these templates.
+  */
+  function mediaItems(d) {
+    return list(d.media)
+      .filter(function (m) {
+        return m && (str(m.image) || str(m.thumbnail) || str(m.videoUrl) || str(m.linkUrl) || str(m.title) || str(m.description))
+      })
+      .sort(function (a, b) {
+        return (a.order == null ? 999 : a.order) - (b.order == null ? 999 : b.order)
+      })
+  }
+
+  function mediaLinks(d) {
+    return list(d.links).filter(function (l) {
+      return l && str(l.url) && str(l.label)
+    })
+  }
+
+  function SelectedMedia(props, d) {
+    var items = mediaItems(d)
+    var links = mediaLinks(d)
+    if (!items.length && !links.length) return null
+
+    return h(
+      'section',
+      { className: 'section case__media pv-section' },
+      chip('Selected media'),
+      h(
+        'div',
+        { className: 'shell' },
+        h('span', { className: 'label' }, 'Selected media'),
+        h('h2', { className: 'section-title' }, 'Selected work, campaign materials and supporting evidence.'),
+        items.length
+          ? h(
+              'div',
+              { className: 'media-grid' },
+              items.map(function (m, i) {
+                var isVid = m.type === 'video' || (!str(m.image) && !!str(m.videoUrl))
+                var thumb = asset(props, str(m.thumbnail) || str(m.image))
+                var href = str(m.linkUrl) || str(m.videoUrl)
+                var label = str(m.linkLabel) || (isVid ? 'Watch video' : 'View')
+                return h(
+                  'figure',
+                  { className: 'media-card' + (isVid ? ' media-card--video' : ''), key: i },
+                  h(
+                    'span',
+                    { className: 'media-card__frame' },
+                    thumb
+                      ? h('img', { className: 'media-card__image', src: thumb, alt: '' })
+                      : h('span', { className: 'media-card__placeholder' }, playGlyph(26)),
+                    isVid ? h('span', { className: 'media-card__play' }, playGlyph(18)) : null
+                  ),
+                  str(m.platform) || str(m.title) || str(m.description) || href
+                    ? h(
+                        'figcaption',
+                        { className: 'media-card__body' },
+                        str(m.platform) ? h('span', { className: 'media-card__platform' }, str(m.platform)) : null,
+                        str(m.title) ? h('h3', { className: 'media-card__title' }, str(m.title)) : null,
+                        str(m.description) ? h('p', { className: 'media-card__desc' }, str(m.description)) : null,
+                        href ? h('span', { className: 'link-cta media-card__cta' }, label) : null
+                      )
+                    : null
+                )
+              })
+            )
+          : null,
+        links.length
+          ? h(
+              'div',
+              { className: 'media-links' },
+              h('span', { className: 'label label--bare' }, 'Related materials'),
+              h(
+                'ul',
+                { className: 'media-links__list' },
+                links.map(function (l, i) {
+                  return h('li', { key: i }, h('span', { className: 'link-cta media-links__link' }, str(l.label)))
+                })
+              )
+            )
+          : null
+      )
+    )
+  }
+
+  function playGlyph(size) {
+    return h(
+      'svg',
+      { width: size, height: size, viewBox: '0 0 24 24', fill: 'currentColor' },
+      h('path', { d: 'M8 5.5v13l11-6.5-11-6.5Z' })
+    )
+  }
+
   function ProjectPreview(props) {
     var d = dataOf(props)
     var image = asset(props, d.heroImage)
@@ -811,6 +913,8 @@
           )
         )
       ),
+
+      SelectedMedia(props, d),
 
       d.learning
         ? h(

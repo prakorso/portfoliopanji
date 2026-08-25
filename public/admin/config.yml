@@ -568,3 +568,112 @@ collections:
         widget: text
         required: false
         hint: The quote near the bottom of the case study. Leave empty to hide that section.
+      - label: Selected media
+        name: media
+        widget: list
+        required: false
+        collapsed: true
+        label_singular: Media item
+        summary: "{{fields.type}} · {{fields.title}}"
+        hint: >-
+          Optional. Screenshots, dashboards, creative, campaign or planning
+          material — visual evidence for the work described above. It appears
+          between Measured Impact and Key Learning. Leave the list empty and the
+          whole section stays hidden.
+        fields:
+          - label: Kind
+            name: type
+            widget: select
+            default: image
+            hint: This decides which fields below are used. The rest can stay empty.
+            options:
+              - { label: "Image — a picture on the page", value: image }
+              - { label: "Video — a card linking out to the video", value: video }
+          - label: Title
+            name: title
+            widget: string
+            required: false
+            hint: Optional, for both kinds.
+          - label: Description
+            name: description
+            widget: text
+            required: false
+            hint: Optional, for both kinds. One or two lines on what this shows.
+          - label: Image
+            name: image
+            widget: image
+            required: false
+            hint: >-
+              IMAGE items — this is the picture itself, and the only field an
+              image really needs.
+          - label: Video address
+            name: videoUrl
+            widget: string
+            required: false
+            hint: >-
+              VIDEO items — the TikTok, Instagram, YouTube, Vimeo or other
+              address the card opens. The video is never embedded in the page.
+          - label: Video thumbnail
+            name: thumbnail
+            widget: image
+            required: false
+            hint: >-
+              VIDEO items, optional. Leave empty and the card shows a plain play
+              panel instead; the layout is the same either way.
+          - label: Platform
+            name: platform
+            widget: string
+            required: false
+            hint: 'VIDEO items, optional. For example TikTok. Shown as small type above the title.'
+          - label: Link address
+            name: linkUrl
+            widget: string
+            required: false
+            hint: Optional. Gives an image item somewhere to go; a video already has its own.
+          - label: Link text
+            name: linkLabel
+            widget: string
+            required: false
+            hint: 'Optional wording for that link. Left empty it reads "Watch video" or "View".'
+          - label: Position
+            name: order
+            widget: number
+            value_type: int
+            required: false
+            default: 1
+            hint: 1 appears first. Drag the items to reorder them instead, if you prefer.
+      - label: Related materials
+        name: links
+        widget: list
+        required: false
+        collapsed: true
+        label_singular: Link
+        summary: "{{fields.label}}"
+        hint: >-
+          Optional. Addresses worth reading alongside the case study — a site, a
+          campaign, published content. They appear as a short list under Selected
+          Media. An empty list hides that list entirely.
+        fields:
+          - { label: Link text, name: label, widget: string, hint: 'What the link says, e.g. "Watch on TikTok".' }
+          - { label: Address, name: url, widget: string, hint: The full address, including https://. Opens in a new tab. }
+          - label: Kind
+            name: type
+            widget: select
+            required: false
+            default: website
+            hint: Stored for your own reference; it does not change how the link looks.
+            options:
+              - { label: Website, value: website }
+              - { label: Campaign, value: campaign }
+              - { label: Video, value: video }
+              - { label: Social media, value: social }
+              - { label: Article, value: article }
+              - { label: Presentation, value: presentation }
+              - { label: Other, value: other }
+          - label: Position
+            name: order
+            widget: number
+            value_type: int
+            required: false
+            default: 1
+            hint: 1 appears first.

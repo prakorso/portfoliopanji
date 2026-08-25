@@ -31,6 +31,7 @@ import {
   contactSection
 } from '../content/index.js'
 import { whatsAppUrl } from './whatsapp.js'
+import { projectMedia, projectLinks, isVideo, mediaThumb, mediaHref } from './media.js'
 
 export const PDF_FILENAME = 'Muhammad-Panji-Prakorsowibowo-Portfolio.pdf'
 
@@ -925,6 +926,128 @@ function caseChapter(sheet, chapter) {
   sheet.y += 6
 }
 
+/**
+ * Selected media, drawn from the same list the case-study page reads.
+ *
+ * Two to a row so the grid matches the site, each pair measured together so a
+ * card is never split down the middle by a page break. A video is a still and
+ * its address — there is nothing to play on paper — and a card with no picture
+ * gets the same panel the page gives it, so the row stays even either way.
+ *
+ * Absent entirely when a project has no media and no links, which is what keeps
+ * this from adding a near-empty page to a project that has not filled it in.
+ */
+async function mediaSection(sheet, project) {
+  const items = projectMedia(project)
+  const links = projectLinks(project)
+  if (!items.length && !links.length) return
+
+  // Reserve the heading plus the first row, so the header never sits alone at
+  // the foot of a page with its grid overleaf.
+  const previewRowH = Math.round(((CONTENT_W - 12) / 2) * 10 / 16) + 60
+  keepTogether(sheet, 60 + previewRowH)
+  eyebrow(sheet, 'Selected media')
+  sheet.paragraph('Selected work, campaign materials and supporting evidence.', {
+    size: 10,
+    style: 'bold',
+    leading: 1.35,
+    after: 8
+  })
+
+  const gap = 12
+  const colW = (CONTENT_W - gap) / 2
+  const frameH = Math.round((colW * 10) / 16)
+
+  for (let i = 0; i < items.length; i += 2) {
+    const row = items.slice(i, i + 2)
+    const loaded = await Promise.all(row.map((item) => loadImage(mediaThumb(item), 620)))
+
+    // Both cards in a row take the taller height, so the grid stays square.
+    const heights = row.map((item, j) => {
+      const captionH =
+        (clean(item.platform) ? 11 : 0) +
+        sheet.measure(item.title, { size: 9.5, style: 'bold', width: colW - 20, leading: 1.3 }) +
+        sheet.measure(item.description, { size: 8.2, width: colW - 20, leading: 1.5 }) +
+        (mediaHref(item) ? 12 : 0)
+      return frameH + captionH + 22
+    })
+    const cardH = Math.max(...heights)
+
+    keepTogether(sheet, cardH + gap)
+    const top = sheet.y
+
+    row.forEach((item, j) => {
+      const x = MARGIN.x + j * (colW + gap)
+      sheet.panel(x, top, colW, cardH, { fill: C.surface })
+
+      const image = loaded[j]
+      if (image) {
+        // Contain, not cover: jsPDF cannot clip to a box, so anything scaled to
+        // fill the frame would be drawn straight over its neighbours. Fitting
+        // inside keeps the aspect ratio, stays within the card, and letterboxes
+        // onto the panel below.
+        sheet.doc.setFillColor(C.raised)
+        sheet.doc.rect(x, top, colW, frameH, 'F')
+        const ratio = Math.min(colW / image.w, frameH / image.h)
+        const dw = image.w * ratio
+        const dh = image.h * ratio
+        sheet.doc.addImage(
+          image.data, image.format,
+          x + (colW - dw) / 2, top + (frameH - dh) / 2, dw, dh, undefined, 'FAST'
+        )
+      } else {
+        sheet.doc.setFillColor(C.raised)
+        sheet.doc.rect(x, top, colW, frameH, 'F')
+        if (isVideo(item)) {
+          sheet.doc.setFillColor(C.soft)
+          sheet.doc.triangle(
+            x + colW / 2 - 6, top + frameH / 2 - 8,
+            x + colW / 2 - 6, top + frameH / 2 + 8,
+            x + colW / 2 + 9, top + frameH / 2,
+            'F'
+          )
+        }
+      }
+      sheet.doc.setDrawColor(C.line)
+      sheet.doc.setLineWidth(0.6)
+      sheet.doc.line(x, top + frameH, x + colW, top + frameH)
+
+      sheet.y = top + frameH + 10
+      const cx = x + 10
+      const cw = colW - 20
+      if (clean(item.platform)) {
+        sheet.doc.setFont('helvetica', 'bold')
+        sheet.doc.setFontSize(6.5)
+        sheet.doc.setTextColor(C.bright)
+        sheet.doc.text(clean(item.platform).toUpperCase(), cx, sheet.y + 5)
+        sheet.y += 11
+      }
+      sheet.paragraph(item.title, { size: 9.5, style: 'bold', x: cx, width: cw, leading: 1.3 })
+      sheet.paragraph(item.description, { size: 8.2, color: C.muted, x: cx, width: cw, leading: 1.5 })
+      const href = mediaHref(item)
+      if (href) {
+        sheet.link(clean(item.linkLabel) || (isVideo(item) ? 'Watch video' : 'View'), href, {
+          size: 7.5,
+          x: cx
+        })
+      }
+    })
+
+    sheet.y = top + cardH + gap
+  }
+
+  if (links.length) {
+    sheet.y += 2
+    keepTogether(sheet, 24 + links.length * 12)
+    eyebrow(sheet, 'Related materials')
+    for (const link of links) {
+      sheet.link(`${clean(link.label)} — ${clean(link.url)}`, clean(link.url), { size: 8 })
+    }
+  }
+
+  sheet.y += 8
+}
+
 async function caseStudyPages(sheet, origin) {
   for (const project of asList(featuredProjects)) {
     sheet.newPage()
@@ -993,6 +1116,9 @@ async function caseStudyPages(sheet, origin) {
       }
       sheet.y += 8
     }
+
+    /* --- selected media (optional) ----------------------------------------- */
+    await mediaSection(sheet, project)
 
     /* --- key learning ------------------------------------------------------ */
     const learning = clean(project.learning)

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import ProjectVisual from '../components/visuals/ProjectVisual.jsx'
+import SelectedMedia from '../components/SelectedMedia.jsx'
 import { getProject, getRelatedProjects } from '../content/index.js'
 import { ArrowLeft, ArrowRight } from '../components/Icons.jsx'
 
@@ -158,6 +159,9 @@ export default function CaseStudy() {
           </Reveal>
         </div>
       </section>
+
+      {/* ---------- Selected media (optional) ---------- */}
+      <SelectedMedia project={project} />
 
       {/* ---------- Learning ---------- */}
       {project.learning && (

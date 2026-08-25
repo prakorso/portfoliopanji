@@ -184,6 +184,25 @@ The downloadable PDF shows the same set, so switching a project off removes it f
 A featured project also gets its own case-study pages in the PDF, built from its
 chapters, impact figures and key learning.
 
+### Selected media
+
+Each project has an optional **Selected media** list — screenshots, dashboards,
+creative, campaign or planning material. It appears on the case study between
+Measured Impact and Key Learning, and in the PDF in the same place. Leave the
+list empty and the section does not exist at all, which is how every project
+starts.
+
+Each item is either an **Image**, which needs only the picture, or a **Video**,
+which needs only the address. A video is never embedded: the card shows your
+thumbnail (or a plain play panel if you give none) and opens the link in a new
+tab, so nobody's browser loads TikTok or YouTube just for visiting the page.
+Title, description and platform are all optional; an item with nothing in it is
+skipped rather than drawn as a blank tile.
+
+**Related materials** is a second, separate list of plain links — a site, a
+campaign, published content. It appears under the media grid, and only when it
+has something in it.
+
 ### Images
 
 Upload in any image field, or through the **Media** button in the top bar. Files are
