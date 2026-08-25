@@ -287,6 +287,25 @@ class Sheet {
     if (clean(lead)) this.paragraph(lead, { size: 10, color: C.muted, leading: 1.5, after: 6 })
   }
 
+  /** Height a wrapped chip set needs, so a group can be kept together. */
+  chipsHeight(items, { size = 8, width = CONTENT_W } = {}) {
+    const list = asList(items).map(clean).filter(Boolean)
+    if (!list.length) return 0
+    this.doc.setFont('helvetica', 'normal')
+    this.doc.setFontSize(size)
+    let rows = 1
+    let cx = 0
+    for (const item of list) {
+      const w = this.doc.getTextWidth(item) + 14
+      if (cx + w > width) {
+        rows += 1
+        cx = 0
+      }
+      cx += w + 5
+    }
+    return rows * 20 + 8
+  }
+
   /** Small pill row — tags, tools. Wraps, and breaks between rows. */
   chips(items, { size = 8, x = MARGIN.x, width = CONTENT_W } = {}) {
     const list = asList(items).map(clean).filter(Boolean)
@@ -366,7 +385,8 @@ function coverPage(sheet, portrait) {
   doc.setLineWidth(3)
   doc.line(0, 232, PAGE.w, 232)
 
-  const textW = portrait ? CONTENT_W - 152 : CONTENT_W
+  // Leave the portrait's box plus a gutter clear.
+  const textW = portrait ? CONTENT_W - 164 : CONTENT_W
 
   sheet.y = 56
   if (clean(hero.eyebrow)) {
@@ -377,27 +397,44 @@ function coverPage(sheet, portrait) {
     sheet.y += 16
   }
 
+  // The name is whatever the CMS holds, so it has to fit whatever that is:
+  // shrink until it clears the portrait, and only then wrap.
+  const name = clean(site.name)
   doc.setFont('helvetica', 'bold')
-  doc.setFontSize(30)
+  let nameSize = 30
+  while (nameSize > 17) {
+    doc.setFontSize(nameSize)
+    if (doc.getTextWidth(name) <= textW) break
+    nameSize -= 1
+  }
+  doc.setFontSize(nameSize)
   doc.setTextColor(C.text)
-  doc.text(clean(site.name), MARGIN.x, sheet.y + 22)
-  sheet.y += 40
+  for (const row of doc.splitTextToSize(name, textW)) {
+    doc.text(row, MARGIN.x, sheet.y + nameSize * 0.75)
+    sheet.y += nameSize * 1.15
+  }
+  sheet.y += 10
 
   // The hero headline, keeping the accent lines blue as on the site.
   const headingLines = asList(hero.headingLines)
   if (headingLines.length) {
-    doc.setFontSize(15)
     for (const line of headingLines) {
       doc.setFont('helvetica', 'bold')
+      doc.setFontSize(15)
       doc.setTextColor(line.accent ? C.soft : C.text)
-      doc.text(clean(line.text), MARGIN.x, sheet.y + 12)
-      sheet.y += 19
+      for (const row of doc.splitTextToSize(clean(line.text), textW)) {
+        doc.text(row, MARGIN.x, sheet.y + 12)
+        sheet.y += 19
+      }
     }
   } else if (clean(site.tagline)) {
+    doc.setFont('helvetica', 'bold')
     doc.setFontSize(13)
     doc.setTextColor(C.soft)
-    doc.text(clean(site.tagline), MARGIN.x, sheet.y + 12)
-    sheet.y += 20
+    for (const row of doc.splitTextToSize(clean(site.tagline), textW)) {
+      doc.text(row, MARGIN.x, sheet.y + 12)
+      sheet.y += 20
+    }
   }
 
   if (portrait) {
@@ -743,14 +780,16 @@ function toolsSection(sheet) {
 
   for (const group of groups) {
     const names = asList(group.tools).map(clean).filter(Boolean)
-    sheet.need(46)
+    // Label and pills move together — a heading alone above a page break reads
+    // as a mistake.
+    sheet.need(18 + sheet.chipsHeight(names))
     sheet.paragraph(group.group, { size: 10, style: 'bold', color: C.text, leading: 1.4, after: 4 })
     sheet.chips(names)
   }
 }
 
 function contactPage(sheet) {
-  sheet.newPage()
+  sheet.gap(10)
   sheet.heading(contactSection.label, contactSection.title, contactSection.titleAccent, contactSection.lead)
 
   const rows = []
