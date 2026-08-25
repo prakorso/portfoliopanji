@@ -9,16 +9,28 @@ export default function Navbar() {
   const isHome = pathname === '/'
   const [firstName, ...restName] = (site.name ?? '').split(' ')
 
-  // No PDF configured means no link to render at all, rather than one that 404s.
-  // `download` only saves same-origin files, so a hosted URL just opens instead.
-  const portfolioUrl = site.portfolioUrl?.trim()
-  const portfolioLink = portfolioUrl && {
-    href: portfolioUrl,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    ...(portfolioUrl.startsWith('/') ? { download: true } : {})
-  }
-  const portfolioLabel = site.portfolioLabel || 'Download'
+  // The portfolio PDF is built from the same content the page renders, on click.
+  // Nothing is uploaded, so the item is always available; `busy` keeps a second
+  // click from starting a second build while the first is still drawing.
+  const [busy, setBusy] = useState(false)
+
+  const downloadPortfolio = useCallback(
+    async (event) => {
+      event.preventDefault()
+      if (busy) return
+      setBusy(true)
+      try {
+        const { downloadPortfolioPdf } = await import('../lib/portfolioPdf.js')
+        await downloadPortfolioPdf()
+        setOpen(false)
+      } catch (error) {
+        console.error('Could not build the portfolio PDF', error)
+      } finally {
+        setBusy(false)
+      }
+    },
+    [busy]
+  )
 
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -91,11 +103,15 @@ export default function Navbar() {
                 </Link>
               )
             })}
-            {portfolioLink && (
-              <a className="nav__link" {...portfolioLink}>
-                {portfolioLabel}
-              </a>
-            )}
+            <a
+              className="nav__link"
+              href="/"
+              onClick={downloadPortfolio}
+              aria-busy={busy}
+              aria-label="Download the portfolio as a PDF"
+            >
+              {busy ? 'Preparing…' : 'Download'}
+            </a>
           </nav>
 
           <div className="nav__actions">
@@ -141,16 +157,16 @@ export default function Navbar() {
               </Link>
             )
           )}
-          {portfolioLink && (
-            <a
-              {...portfolioLink}
-              onClick={closeMenu}
-              style={{ transitionDelay: `${60 + headerLinks.length * 45}ms` }}
-            >
-              <span className="mobile-menu__index">0{headerLinks.length + 1}</span>
-              {portfolioLabel}
-            </a>
-          )}
+          <a
+            href="/"
+            onClick={downloadPortfolio}
+            aria-busy={busy}
+            aria-label="Download the portfolio as a PDF"
+            style={{ transitionDelay: `${60 + headerLinks.length * 45}ms` }}
+          >
+            <span className="mobile-menu__index">0{headerLinks.length + 1}</span>
+            {busy ? 'Preparing…' : 'Download'}
+          </a>
         </nav>
         <div className="mobile-menu__foot">
           <span className="label label--bare">{site.tagline}</span>

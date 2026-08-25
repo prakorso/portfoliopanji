@@ -31,10 +31,7 @@ export const projects = Object.entries(projectModules)
 
 export const site = {
   name: general.siteName,
-  tagline: general.tagline,
-  /** The curated portfolio PDF behind the header's Download link. Empty hides it. */
-  portfolioUrl: general.portfolioUrl,
-  portfolioLabel: general.portfolioLabel
+  tagline: general.tagline
 }
 
 export const hero = homepage.hero ?? {}

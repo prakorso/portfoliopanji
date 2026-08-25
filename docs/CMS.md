@@ -199,7 +199,21 @@ button on the site is hidden while this is empty, and appears once you upload on
 
 **Project images:** each project has an optional *Hero image*. Leave it empty and the site
 uses the built-in abstract graphic (chosen under *Built-in graphic*). Upload one and it
-replaces that graphic on both the project card and the case study page.
+replaces that graphic on both the project card and the case study page — and it is the
+image that appears beside that project in the downloadable PDF.
+
+### The Download menu item
+
+**There is no portfolio PDF to upload or keep up to date.** *Download* in the top menu
+builds one in the visitor's browser at the moment they click it, reading the same content
+these collections hold — hero, about, experience, projects, how I think, tools and
+contact. Publish a change here, wait for the Netlify build, and the next download carries
+it. The file is always named `Panji-Prakorsowibowo-Portfolio.pdf`.
+
+It is drawn as real text rather than a screenshot of the page, so the result is a
+searchable A4 document of about 40 KB with working email, WhatsApp, LinkedIn and
+case-study links — not a picture of the website. Its typography is the PDF's own; the
+layout is per-section rather than a pixel copy of the site.
 
 ### Adding a project
 

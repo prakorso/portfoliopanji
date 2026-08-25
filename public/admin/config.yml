@@ -401,27 +401,14 @@ collections:
         label: Site & footer
         file: content/general.yml
         format: yml
-        description: Your name and tagline, plus the portfolio PDF the top navigation links to.
+        description: >-
+          Your name and tagline, used in the top navigation and the footer. The
+          Download item in the menu builds a PDF of this site on the spot, from
+          the content in these collections — there is no file to upload or keep
+          up to date.
         fields:
           - { label: Your name, name: siteName, widget: string, hint: Shown in the top left and in the footer. }
           - { label: Tagline, name: tagline, widget: string, hint: 'The blue line under your name in the footer.' }
-          - label: Portfolio PDF
-            name: portfolioUrl
-            widget: file
-            required: false
-            media_folder: /public/uploads/general
-            public_folder: /uploads/general
-            hint: >-
-              Upload your portfolio as a PDF. The Download link in the top menu only
-              appears once a file is here — leave this empty and the menu simply
-              shows Home, About, Experience, Projects. Replacing the file here
-              updates the link everywhere.
-          - label: Download link text
-            name: portfolioLabel
-            widget: string
-            required: false
-            default: Download
-            hint: The wording of that menu item. Leave empty for "Download".
 
   # =============================================================== Projects
   - name: projects
