@@ -80,13 +80,11 @@ export default function ProjectCarousel() {
 
       <div className="carousel">
         <div className="carousel__track" ref={trackRef} tabIndex={0} aria-label="Featured projects">
-          <span className="carousel__pad" aria-hidden="true" />
           {projects.map((project, i) => (
             <div className="carousel__item" key={project.slug}>
               <ProjectCard project={project} isActive={i === active} />
             </div>
           ))}
-          <span className="carousel__pad" aria-hidden="true" />
         </div>
       </div>
 

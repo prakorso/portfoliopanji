@@ -904,7 +904,16 @@
    ========================================================= */
 
 .projects {
-  --rail-pad: max(calc((100vw - var(--maxw)) / 2), 0px);
+  /*
+    Where .shell's content edge falls, derived the same way .shell derives it —
+    max-width, centred, plus the gutter. The carousel track is full-bleed so it
+    can scroll past the viewport edges, and this is what lines its cards up with
+    every other section instead of starting them at the window edge.
+
+    `100%` rather than `100vw`: the track's containing block excludes the
+    scrollbar, so this stays exact when one is present.
+  */
+  --rail-inset: max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)));
   overflow: hidden;
 }
 
@@ -925,15 +934,17 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding-block: 8px 28px;
+  /*
+    padding-inline puts the first card on the content edge; scroll-padding-inline
+    moves the snap edge to match, so `scroll-snap-align: start` rests the card
+    there rather than dragging it back to the window edge.
+  */
+  padding-inline: var(--rail-inset);
+  scroll-padding-inline: var(--rail-inset);
 }
 
 .carousel__track::-webkit-scrollbar {
   display: none;
-}
-
-.carousel__pad {
-  flex: 0 0 calc(var(--rail-pad) + var(--gutter) - 24px);
-  min-width: 1px;
 }
 
 .carousel__item {
