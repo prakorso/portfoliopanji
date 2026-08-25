@@ -1,103 +1,129 @@
-title: "Axioo / Pongo"
-slug: "axioo-pongo"
-displayTitle: "AXIOO / PONGO"
+title: AXIOO INDONESIA
+slug: axioo-indonesia
+displayTitle: AXIOO INDONESIA
 number: "03"
-category: "Brand / Digital / Performance"
-categoryShort: "Brand / Digital / Performance"
+category: Building a digital growth ecosystem for a new gaming proposition.
+categoryShort: Brand / Digital / Performance
 year: ""
 order: 3
 featured: true
-heroImage: ""
-logo: ""
-visual: "devices"
+heroImage: /uploads/projects/1.png
+logo: /uploads/projects/1.png
+visual: devices
 tags:
-  - "Brand"
-  - "Digital Presence"
-  - "Full-Funnel"
-  - "Creator Marketing"
-shortDescription: "Building digital presence, customer engagement and measurable growth across Axioo and Pongo."
-heroDescription: "Brand, digital and performance working as one system across a technology manufacturer and its gaming line — from digital presence through to full-funnel acquisition."
+  - Brand
+  - Digital Presence
+  - Performance
+  - Growth
+shortDescription: Building an integrated digital marketing ecosystem across
+  brand, digital, performance and growth.
+heroDescription: Building an integrated digital marketing ecosystem across
+  brand, product, content and performance — connecting digital presence with
+  customer engagement and commercial growth.
 cardMetrics:
-  - value: "4X"
-    label: "YoY Sales Growth"
-  - value: "+727%"
-    label: "Total Users"
-  - value: "-77%"
-    label: "CPC"
+  - value: 4X
+    label: YoY Sales Growth
+  - value: +727%
+    label: Total Users
+  - value: -77%
+    label: CPC
 chapters:
-  - label: "Brand Context"
-    title: "A local technology brand and its gaming line"
+  - label: Brand Context
+    title: Building a distinct proposition within a competitive category
     body:
-      - "Axioo is an Indonesian technology and laptop brand; Pongo is its gaming-focused line. The two share infrastructure but speak to different audiences — one broad and value-led, the other enthusiast, community-driven and highly comparison-oriented."
-      - "The work spanned both: a single digital and performance operating model, with brand expression and messaging tuned per audience."
+      - Axioo operates across a highly competitive technology market, where
+        product differentiation needs to be supported by strong brand relevance,
+        digital visibility and customer understanding.
+      - The marketing scope evolved beyond individual campaigns — connecting
+        brand communication, product storytelling and digital initiatives into a
+        more consistent customer experience.
     bullets: []
     columns: []
-  - label: "Digital Ecosystem"
-    title: "Presence built to convert, not just to exist"
+  - label: Digital Ecosystem
+    title: Presence built to convert, not just to exist
     body:
-      - "The digital estate was treated as a growth asset: the website, product pages and campaign destinations all measured on their contribution to engaged sessions and conversion, not on traffic alone."
+      - Digital became a core part of the marketing ecosystem — connecting
+        website, content, social media, SEO and campaign destinations to support
+        discovery, engagement and conversion.
     bullets:
-      - "Website and product experience as the centre of the ecosystem"
-      - "Campaign landing experiences aligned to ad message and audience"
-      - "Analytics, event tracking and dashboarding for shared visibility"
-      - "SEO and content supporting non-paid discovery"
+      - Website and product experience as a central digital touchpoint
+      - Campaign landing experiences aligned with audience intent
+      - Analytics and measurement to understand audience behaviour
+      - Digital content supporting product consideration
+      - SEO and content supporting long-term discovery
+      - Connected touchpoints across the customer journey
     columns: []
-  - label: "Full-Funnel Marketing"
-    title: "One funnel, three jobs"
+  - label: Full-Funnel Marketing
+    title: One funnel, three jobs
     body:
-      - "Rather than running awareness and performance as separate budgets, activity was planned as a single funnel with distinct jobs at each stage and a clear hand-off between them."
+      - Marketing activity was structured around the full customer journey —
+        connecting awareness, consideration and conversion rather than treating
+        each stage as an isolated campaign.
     bullets: []
     columns:
-      - title: "Awareness"
+      - title: Awareness
         items:
-          - "Brand and product storytelling"
-          - "Creator and community reach"
-          - "Broad-audience video and social"
-      - title: "Consideration"
+          - Brand Storytelling
+          - COntent & Community Reach
+          - Creator-led Awareness
+      - title: Consideration
         items:
-          - "Comparison and spec-led content"
-          - "Retargeting from engaged audiences"
-          - "Review and community proof"
-      - title: "Conversion"
+          - Product Education
+          - Reviews & SOcial Proof
+          - Retargeting & Engagament
+      - title: Conversion
         items:
-          - "High-intent search and shopping"
-          - "Offer and launch campaigns"
-          - "Marketplace and retail alignment"
-  - label: "Performance Marketing"
-    title: "Efficiency earned through structure and testing"
+          - Performance Campaign
+          - High Intent Product Communication
+          - Landing Page & Marketplace Alignment
+  - label: Performance Marketing
+    title: Performance built around efficiency and growth
     body:
-      - "Performance gains came from campaign architecture and disciplined iteration rather than from spending more: cleaner audience separation, sharper creative-to-intent matching and continuous pruning of what did not earn its budget."
+      - Performance marketing was managed around audience intent, campaign
+        architecture and disciplined measurement — using data to improve
+        efficiency, inform budget allocation and strengthen acquisition
+        outcomes.
     bullets:
-      - "Campaign restructure around audience intent and funnel stage"
-      - "Systematic creative testing on hooks, formats and messaging"
-      - "Bid, budget and placement optimisation against efficiency targets"
-      - "Landing-page and post-click experience improvements"
-      - "Measurement framework connecting spend to engaged sessions and sales"
+      - Audience segmentation around intent and funnel stage
+      - Creative testing across hooks, formats and messaging
+      - Campaign structure aligned with commercial objectives
+      - Landing-page and post-click improvements
+      - Budget and placement optimisation
+      - Measurement connecting media activity with business outcomes
     columns: []
-  - label: "Creator Partnerships"
-    title: "Community credibility as a growth channel"
+  - label: Creator Partnerships
+    title: Building credibility beyond paid media
     body:
-      - "In gaming and technology, third-party credibility outperforms brand claims. Creator partnerships were used to build genuine product proof, then that content was recycled into paid placements where it consistently outperformed studio-made assets."
+      - Creator and technology-reviewer partnerships extended product
+        communication into trusted communities, translating product value
+        through more relevant and audience-native storytelling.
     bullets:
-      - "Creator selection based on audience fit over follower count"
-      - "Product-led briefs that allowed honest, native treatment"
-      - "Creator content repurposed into paid social and retargeting"
-      - "Community engagement sustained beyond campaign windows"
+      - Creator selection based on audience fit
+      - Creator briefs designed for authentic product storytelling
+      - Product seeding and review-led communication
+      - Community engagement beyond campaign windows
+      - Content adapted across digital channels
+      - Creator content supporting consideration and reach
     columns: []
 impact:
-  label: "Selected Historical Impact"
-  attribution: "Axioo Indonesia"
-  note: "These are selected historical results achieved during my time at Axioo Indonesia. They describe past performance in that role and period — not current 2026 results, and not a projection of future outcomes."
+  label: Selected Historical Impact
+  attribution: Axioo Indonesia
+  note: Historical results delivered during my time at Axioo Indonesia, combining
+    brand building, digital ecosystem development and performance marketing into
+    measurable commercial growth.
   items:
-    - value: "4X"
-      label: "YoY Sales Growth"
-    - value: "+727%"
-      label: "Total Users"
-    - value: "-77%"
-      label: "CPC"
-    - value: "+276%"
-      label: "CTR"
-    - value: "13.24X"
-      label: "Website Engaged Sessions"
+    - value: 4X
+      label: YoY Sales Growth
+    - value: +727%
+      label: Total Users
+    - value: -77%
+      label: CPC
+    - value: +276%
+      label: CTR
+    - value: 13.24X
+      label: Website Engaged Sessions
   qualitative: []
-learning: "Brand and performance are not competing budgets. The cheapest clicks came from the work that built credibility first — creator proof and a stronger brand made every performance campaign that followed more efficient."
+learning: The strongest growth did not come from choosing between brand or
+  performance—it came from integrating both. Brand built credibility, digital
+  created engagement, and performance converted demand. The role of marketing
+  leadership is connecting those functions into one measurable growth engine.
